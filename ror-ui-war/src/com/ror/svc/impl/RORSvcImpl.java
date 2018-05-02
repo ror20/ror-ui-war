@@ -43,4 +43,9 @@ public class RORSvcImpl implements RORSvc {
 		return rorDAO.fetchAllUser();
 	}
 
+	@Override
+	public RORUser authenticateUser(RORUser user) {
+		return rorDAO.authenticateUser(user);
+	}
+
 }

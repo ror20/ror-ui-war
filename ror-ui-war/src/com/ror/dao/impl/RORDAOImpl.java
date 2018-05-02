@@ -184,4 +184,9 @@ public class RORDAOImpl implements RORDAO {
 		mongoCollection = mongoDatabase.getCollection(COLLECTION_NAME);
 	}
 
+	@Override
+	public RORUser authenticateUser(RORUser user) {
+		return fetchUser(user.getUserId());
+	}
+
 }

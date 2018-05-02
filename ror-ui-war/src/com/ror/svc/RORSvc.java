@@ -17,4 +17,6 @@ public interface RORSvc {
 
 	public List<RORUser> fetchAlluser();
 
+	public RORUser authenticateUser(RORUser user);
+
 }
