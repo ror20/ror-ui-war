@@ -9,10 +9,10 @@
 <title>Room Of Requirements</title>
 </head>
 <body>
-	<div class="w3-right-align" style="margin-right: 10px;">
-		<a href="index.jsp">Logout</a>
+	<div class="w3-right" style="margin-right: 10px;">
+		<a href="logout.cont" >Logout</a>
 	</div>
 	<h1>Hello ${rorUserName}</h1>
-
+	<input type="hidden" value="${rorUserName}">
 </body>
 </html>

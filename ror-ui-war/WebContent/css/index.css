@@ -2,7 +2,7 @@
 	background-color: green;
 	color: white;
 	border: none;
-	padding: 14px 14px;
+	padding: 16px 15px;
 }
 
 #loginButton:hover {
@@ -14,7 +14,7 @@
 	background-color: #3498DB;
 	color: white;
 	border: none;
-	padding: 14px 14px;
+	padding: 16px 14px;
 	margin-left: 30px;
 }
 
@@ -22,3 +22,6 @@
 	background-color: #5DADE2;
 	color: white;
 }
+/* .logoutcss{
+	margin-left: 730px;
+} */

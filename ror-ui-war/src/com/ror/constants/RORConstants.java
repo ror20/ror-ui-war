@@ -7,11 +7,11 @@ public class RORConstants {
 	public static final String COLLECTION_NAME = "users";
 
 	public static final String USERS_DOCUMENT = "roruserlist";
-	
+
 	public static final String DOCUMENT_ID_VALUE = "RORUserList_NEW";
 
 	public static final String DOCUMENT_ID = "_id";
-	
+
 	public static final String ROR_USER_ID = "rorUserId";
 
 	public static final String ROR_USER_PASSWORD = "rorUserPassword";
@@ -27,4 +27,10 @@ public class RORConstants {
 	public static final String LOGIN_INVALID = "Invalid User Id/Password";
 
 	public static final String SIGNUP_PAGE = "jsp/signup";
+	
+	public static final String LOGOUT_MESSAGE = "logoutMessage";
+
+	public static final String ROR_USER_NAME = "userName";
+	
+	public static final String APPEND_SPACE = " ";
 }
