@@ -186,7 +186,11 @@ public class RORDAOImpl implements RORDAO {
 
 	@Override
 	public RORUser authenticateUser(RORUser user) {
-		return fetchUser(user.getUserId());
+		RORUser fetchedUser = fetchUser(user.getUserId());
+		if(user.getUserId().equals(fetchedUser.getUserId()) && user.getPassword().equals(fetchedUser.getPassword())) {
+			return fetchedUser;
+		}
+		return null;
 	}
 
 }

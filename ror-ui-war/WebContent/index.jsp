@@ -13,12 +13,16 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/png" href="images/RORLogo.png" />
+
+<link rel="stylesheet" href="css/index.css">
 <title>Room of Requirement</title>
 </head>
 <style>
 html, body, h1, h2, h3, h4, h5 {
 	font-family: "Open Sans", sans-serif
 }
+
+
 </style>
 <body class="w3-theme-l5">
 
@@ -31,15 +35,33 @@ html, body, h1, h2, h3, h4, h5 {
 				class="fa fa-bars"></i></a> <a href=""
 				class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
 				class="fa fa-home w3-margin-right"></i>Room Of Requirement</a>
+		</div>
+	</div>
 
-			<p class="w3-right">${loginMessage}</p>
-			<form action="authenticate.cont" class="w3-right " method="post">
+	<!-- <div style="margin-top: 200px; margin-left: 250px;"> -->
+	<div class="w3-content w3-padding-small w3-margin-top" id="portfolio">
+		<div class="w3-white w3-padding-small w3-padding-30 w3-margin-top"
+			id="contact">
+			<br>
+			<center>
+				<img alt="LoginLogo" src="images/userManagementLogo.jpg">
+			</center>
+			<br>
+			<center>
+				<h3>LOGIN</h3>
+			</center>
+			<p>${loginMessage}</p>
+			<form action="authenticate.cont" method="post">
+
 				<input type="text" name="rorUserId" id="inputText"
-					style="margin-top: 12px;" placeholder="User Id" maxlength="6"
-					required /> <input type="password" name="rorUserPassword"
-					id="inputText" style="margin-top: 12px;" placeholder="Password"
-					required /> <input type="submit" value="Login"
-					style="margin-top: 12px;" />
+					class="w3-input w3-border" placeholder="User Id" maxlength="6"
+					width="50%" required /> <br> <input
+					class="w3-input w3-border" width="100px" type="password"
+					name="rorUserPassword" id="inputText" placeholder="Password"
+					required /><br> <input id="loginButton" type="submit"
+					value="Login" /><input id="signupButton" type="button"
+					onclick="window.location.href='${pageContext.request.contextPath}/signup.cont'"
+					value="Sign Up" />
 			</form>
 		</div>
 	</div>
