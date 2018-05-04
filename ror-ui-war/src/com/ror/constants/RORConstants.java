@@ -16,7 +16,7 @@ public class RORConstants {
 
 	public static final String ROR_USER_PASSWORD = "rorUserPassword";
 
-	public static final String PROFILE_PAGE = "jsp/profile";
+	public static final String PROFILE_PAGE = "profile";
 
 	public static final String USER_NAME = "rorUserName";
 
@@ -26,7 +26,7 @@ public class RORConstants {
 
 	public static final String LOGIN_INVALID = "Invalid User Id/Password";
 
-	public static final String SIGNUP_PAGE = "jsp/signup";
+	public static final String SIGNUP_PAGE = "signup";
 	
 	public static final String LOGOUT_MESSAGE = "logoutMessage";
 
