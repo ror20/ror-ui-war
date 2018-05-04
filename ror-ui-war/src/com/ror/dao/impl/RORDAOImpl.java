@@ -93,6 +93,7 @@ public class RORDAOImpl implements RORDAO {
 		}
 		return user;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public RORResponseVO updateUser(RORUser user) {
@@ -125,6 +126,7 @@ public class RORDAOImpl implements RORDAO {
 		}
 		return responseVO;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public RORResponseVO deleteUser(String userId) {
@@ -173,7 +175,7 @@ public class RORDAOImpl implements RORDAO {
 		}
 		Collection<String> rorValues = userMap.values();
 		Iterator<String> itr = rorValues.iterator();
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			rorUserList.add((RORUser) convertToPOJO(itr.next(), RORUser.class));
 		}
 		return rorUserList;
@@ -187,8 +189,10 @@ public class RORDAOImpl implements RORDAO {
 	@Override
 	public RORUser authenticateUser(RORUser user) {
 		RORUser fetchedUser = fetchUser(user.getUserId());
-		if(user.getUserId().equals(fetchedUser.getUserId()) && user.getPassword().equals(fetchedUser.getPassword())) {
-			return fetchedUser;
+		if (fetchedUser != null) {
+			if (user.getUserId().equals(fetchedUser.getUserId()) && user.getPassword().equals(fetchedUser.getPassword())) {
+				return fetchedUser;
+			}
 		}
 		return null;
 	}
