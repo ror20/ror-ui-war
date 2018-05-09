@@ -6,3 +6,40 @@ function openNav() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
+
+var request;
+function checkUserIdIFExist() {
+	var v = document.signupform.userId.value;
+		var url = "https://ror-rest.herokuapp.com/rest/checkUserExist/"
+				+ v;
+		if(!v){
+			return;
+		}
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	try {
+		request.onreadystatechange = getInfo;
+		request.open("GET", url, true);
+		request.send();
+	} catch (e) {
+		alert("Unable to connect to server");
+	}
+}
+
+function getInfo() {
+	if (request.readyState == 4) {
+		var val = request.responseText;
+		if(val == 'true'){
+			document.getElementById('status').innerHTML = 'Not available';
+			$('#status').css('color', 'red');
+		}
+		else{
+			document.getElementById('status').innerHTML = 'available';
+			$('#status').css('color', 'green');
+		}
+	}
+}

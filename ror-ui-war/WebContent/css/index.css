@@ -22,6 +22,17 @@
 	background-color: #5DADE2;
 	color: white;
 }
+
+.helloUser{
+	background-color: #000000;
+	color: white;
+}
 /* .logoutcss{
 	margin-left: 730px;
 } */
+
+#storeUserForm{
+	margin-top: 200px;
+	margin-left: 100px;
+	width:200px;
+}

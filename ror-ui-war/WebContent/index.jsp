@@ -15,6 +15,7 @@
 <link rel="icon" type="image/png" href="images/RORLogo.png" />
 
 <link rel="stylesheet" href="css/index.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 
 <title>Room of Requirement</title>

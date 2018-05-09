@@ -13,24 +13,26 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/png" href="images/RORLogo.png" />
+
 <link rel="stylesheet" href="css/index.css">
-<title>Room Of Requirements</title>
+<script type="text/javascript" src="js/index.js"></script>
+
+<title>Room of Requirement</title>
 </head>
 <style>
 html, body, h1, h2, h3, h4, h5 {
 	font-family: "Open Sans", sans-serif
 }
 </style>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
 <body class="w3-theme-l5">
 
+	<!-- Navbar -->
 	<div class="w3-top">
 		<div class="w3-bar w3-theme-d2 w3-left-align w3-large">
 			<a
 				class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
 				href="javascript:void(0);" onclick="openNav()"><i
-				class="fa fa-bars"></i></a> <a href="index.jsp"
+				class="fa fa-bars"></i></a> <a href=""
 				class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
 				class="fa fa-home w3-margin-right"></i>Room Of Requirement</a>
 
@@ -39,23 +41,9 @@ html, body, h1, h2, h3, h4, h5 {
 
 	<div id="navDemo"
 		class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-		<a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a> <a
-			href="#" class="w3-bar-item w3-button w3-padding-large">Blogs</a> <a
-			href="#" class="w3-bar-item w3-button w3-padding-large">Hot News</a>
-		<a href="#" class="w3-bar-item w3-button w3-padding-large">Contest</a>
-		<a href="#" class="w3-bar-item w3-button w3-padding-large">About
-			us</a>
-	</div>
-
-	<div id="storeUserForm">
-		<form name="signupform" action="storeUser.cont" method="post">
-			<input type="text" id="userName" name="userName" class="w3-input"
-				placeholder="Enter the User Name" required /><br> <input 
-				type="text" id="userId" name="userId" class="w3-input"
-				placeholder="Enter the User Id" minlength="6" maxlength="6"
-				onkeyup="checkUserIdIFExist()"
-				title="Enter 6 digit user id" required /> <span id="status"> </span><br>
-		</form>
+		<a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a> 
+		<p class="helloUser">Hello Admin</p><a
+			href="logout.cont" class="w3-bar-item w3-button w3-padding-large">Logout</a>
 	</div>
 
 </body>
