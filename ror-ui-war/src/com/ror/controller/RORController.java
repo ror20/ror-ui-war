@@ -12,39 +12,19 @@ import static com.ror.constants.RORConstants.ROR_USER_PASSWORD;
 import static com.ror.constants.RORConstants.SIGNUP_PAGE;
 import static com.ror.constants.RORConstants.USER_NAME;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.Mongo;
-import com.mongodb.MongoURI;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSDBFile;
-import com.mongodb.gridfs.GridFSInputFile;
 import com.ror.model.RORUser;
 import com.ror.svc.RORSvc;
 
 @Controller
-@MultipartConfig(maxFileSize = 16177215)
 public class RORController {
 
 	@Autowired
@@ -83,7 +63,7 @@ public class RORController {
 		return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, message + "!");
 	}
 
-	@RequestMapping(value = "/upload", consumes = "multipart/form-data")
+/*	@RequestMapping(value = "/upload", consumes = "multipart/form-data")
 	public ModelAndView uplaodImage(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Part filePart = request.getPart("file");// Retrieves <input type="file" name="image">`
@@ -119,7 +99,7 @@ public class RORController {
 			  outputImage.close();
 			 
 
-			/*ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			out.writeTo(baos);
 			byte[] thumb = baos.toByteArray();
 
@@ -153,7 +133,7 @@ public class RORController {
 						input.close();
 					} catch (IOException ignore) {
 					}
-			}*/
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,5 +143,5 @@ public class RORController {
 	}
 
 	// upload.cont
-
+*/
 }
