@@ -16,7 +16,11 @@ public class RORSvcImpl implements RORSvc {
 
 	@Override
 	public boolean storeUser(RORUser user) {
-		return rorDAO.storeUser(user);
+		if (validateUser(user))
+			return rorDAO.storeUser(user);
+		else {
+			return false;
+		}
 	}
 
 	@Override
@@ -48,4 +52,12 @@ public class RORSvcImpl implements RORSvc {
 		return rorDAO.authenticateUser(user);
 	}
 
+	private boolean validateUser(RORUser user) {
+		if (user.getUserId().length() != 6) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
 }

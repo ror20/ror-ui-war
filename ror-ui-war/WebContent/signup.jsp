@@ -49,20 +49,17 @@ html, body, h1, h2, h3, h4, h5 {
 
 	<div id="storeUserForm">
 		<form name="signupform" action="storeUser.cont" method="post">
-			<input type="text" id="userName" name="userName" class="w3-input"
-				placeholder="Enter the User Name" required /><br> <input 
-				type="text" id="rorUserId" name="rorUserId" class="w3-input"
-				placeholder="Enter the User Id" minlength="6" maxlength="6"
-				onkeyup="checkUserIdIFExist()"
-				title="Enter 6 digit user id" required /> <span id="status"> </span><br>
-				<input type="email" id="email" name="email" class="w3-input" placeholder="Enter the Email address" required /><br>
-				<input type="password" id="rorUserPassword" name="rorUserPassword" class="w3-input" placeholder="Enter the Password" required /><br>
-				<input type="password" id="repassword" name="repassword" class="w3-input" placeholder="ReEnter the Password" required />
-				<span id='message' name="span"></span><br>
-				<div id="submitDiv">
-				<input type="submit" id="loginButton" name="register" value="Register"><br>
-				</div>
-				<b>${signUpMessage }</b>
+			<input type="text" id="userName" name="userName" class="w3-input" placeholder="Enter the User Name" value="${userName }" required /><br>
+			<input type="text" id="rorUserId" name="rorUserId" class="w3-input" placeholder="Enter the User Id" value="${rorUserId }" minlength="6" maxlength="6"	onkeyup="checkUserIdIFExist()" title="Enter 6 digit user id" required />
+			<span id="status"> </span><br>
+			<input type="email" id="email" name="email" class="w3-input" placeholder="Enter the Email address" value="${email }" required /><br>
+			<input type="password" id="rorUserPassword" name="rorUserPassword" class="w3-input" placeholder="Enter the Password" required /><br>
+			<input type="password" id="repassword" name="repassword" class="w3-input" placeholder="ReEnter the Password" required />
+			<span id='message' name="span"></span><br>
+			<div id="submitDiv">
+			<input type="submit" id="loginButton" name="register" value="Register"><br>
+			</div>
+			<b>${signUpMessage }</b>
 		</form>
 	</div>
 
