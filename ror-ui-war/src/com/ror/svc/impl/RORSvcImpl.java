@@ -15,7 +15,7 @@ public class RORSvcImpl implements RORSvc {
 	private RORDAO rorDAO;
 
 	@Override
-	public RORResponseVO storeUser(RORUser user) {
+	public boolean storeUser(RORUser user) {
 		return rorDAO.storeUser(user);
 	}
 

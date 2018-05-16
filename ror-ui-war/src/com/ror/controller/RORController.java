@@ -10,7 +10,7 @@ import static com.ror.constants.RORConstants.ROR_USER_ID;
 import static com.ror.constants.RORConstants.ROR_USER_NAME;
 import static com.ror.constants.RORConstants.ROR_USER_PASSWORD;
 import static com.ror.constants.RORConstants.SIGNUP_PAGE;
-import static com.ror.constants.RORConstants.USER_NAME;
+import static com.ror.constants.RORConstants.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +27,8 @@ import com.ror.svc.RORSvc;
 @Controller
 public class RORController {
 
+	
+	
 	@Autowired
 	private RORSvc rorSvc;
 
@@ -63,85 +65,23 @@ public class RORController {
 		return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, message + "!");
 	}
 
-/*	@RequestMapping(value = "/upload", consumes = "multipart/form-data")
-	public ModelAndView uplaodImage(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			Part filePart = request.getPart("file");// Retrieves <input type="file" name="image">`
-			String filePath = filePart.getName();
-			System.out.println("file path : " + filePath);
-			Path p = Paths.get(filePath); // creates a Path object
-			String fileName = p.getFileName().toString();// Retrieves file name from Path object
-			InputStream fileContent = filePart.getInputStream();// converts Part data to input stream
-
-			byte[] buffer = new byte[(int) filePart.getSize()];
-			fileContent.read(buffer, 0, (int) filePart.getSize());
-			MongoURI uri = new MongoURI("mongodb://akash:akash@ds249269.mlab.com:49269/ror");
-			Mongo mongo1 = new Mongo(uri);
-			String dbName = "ror";
-			DB db = mongo1.getDB(dbName);
-			// Create GridFS object
-			GridFS fs = new GridFS(db);
-			// Save image into database
-			GridFSInputFile ing = fs.createFile(buffer);
-			ing.save();
-			GridFSDBFile out = fs.findOne(new BasicDBObject("_id", ing.getId()));
-
-			// Save loaded image from database into new image file
-			System.out.println("getURI"+request.getRequestURI());
-			System.out.println("getPathInfo"+request.getPathInfo());
-			System.out.println("getServletPath"+request.getServletPath());
-			
-			String servletPath = request.getServletPath();
-			String pageContext = request.getRequestURL().toString().replaceAll(servletPath, "");
-			System.out.println("page context "+pageContext);
-			  FileOutputStream outputImage = new FileOutputStream(pageContext+"/images/userAvatar.jpg");
-			  out.writeTo(outputImage);
-			  outputImage.close();
-			 
-
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			out.writeTo(baos);
-			byte[] thumb = baos.toByteArray();
-
-			String name = "userAvatar";
-			response.setContentType("image/jpeg");
-			response.setContentLength(thumb.length);
-
-			response.setHeader("Content-Disposition", "inline; filename=\"" + name + "\"");
-
-			BufferedInputStream input = null;
-			BufferedOutputStream output = null;
-
-			try {
-				input = new BufferedInputStream(new ByteArrayInputStream(thumb));
-				output = new BufferedOutputStream(new FileOutputStream(request.getRequestURL()+"/images/userAvatar.jpg"));
-				byte[] buffer1 = new byte[8192];
-				int length;
-				while ((length = input.read(buffer1)) > 0) {
-					output.write(buffer1, 0, length);
-				}
-			} catch (IOException e) {
-				System.out.println("There are errors in reading/writing image stream " + e.getMessage());
-			} finally {
-				if (output != null)
-					try {
-						output.close();
-					} catch (IOException ignore) {
-					}
-				if (input != null)
-					try {
-						input.close();
-					} catch (IOException ignore) {
-					}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ModelAndView("welcome", "message", "Save Failed!");
+	@RequestMapping("/storeUser")
+	public ModelAndView storeUser(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		String userName = request.getParameter(ROR_USER_NAME);
+		String userId = request.getParameter(ROR_USER_ID);
+		String password = request.getParameter(ROR_USER_PASSWORD);
+		String emailId = request.getParameter(ROR_USER_EMAIL);
+		RORUser newUser = new RORUser(userName, userId, emailId, password);
+		boolean storeStatus = rorSvc.storeUser(newUser);
+		if(!storeStatus) {
+			mav = new ModelAndView(SIGNUP_PAGE,SIGN_UP_MESSAGE,SIGN_UP_FAILED);
+			mav.addObject(ROR_USER_NAME, userName);
+			mav.addObject(ROR_USER_ID,userId);
+			mav.addObject(ROR_USER_EMAIL,emailId);
+		}else {
+			mav = new ModelAndView(LOGIN_PAGE,LOGOUT_MESSAGE,SIGN_UP_SUCCESS);
 		}
-		return new ModelAndView("welcome", "message", "Saved Successfully");
+		return mav;
 	}
-
-	// upload.cont
-*/
 }

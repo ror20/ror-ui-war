@@ -38,8 +38,7 @@ public class RORDAOImpl implements RORDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public RORResponseVO storeUser(RORUser user) {
-		RORResponseVO responseVO = null;
+	public boolean storeUser(RORUser user) {
 		Document document1 = null;
 		Map<String, String> userMap = null;
 		try {
@@ -60,14 +59,13 @@ public class RORDAOImpl implements RORDAO {
 				mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, DOCUMENT_ID_VALUE));
 				document1.put(USERS_DOCUMENT, convertToJson(userMap));
 				mongoCollection.insertOne(document1);
-				responseVO = new RORResponseVO("200 Ok", "User Details stored successfully!");
+				return true;
 			}
-		} catch (RORException e) {
-			responseVO = new RORResponseVO("400 Bad Request", e.toString());
-		} catch (Exception e) {
-			responseVO = new RORResponseVO("404 Bad Request", "Error occured. Failed to store user details!");
+		}catch (Exception e) {
+			System.out.println("Exception occured to store the user data.");
+			e.printStackTrace();
+			return false;
 		}
-		return responseVO;
 	}
 
 	@SuppressWarnings("unchecked")

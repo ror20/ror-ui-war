@@ -33,4 +33,12 @@ public class RORConstants {
 	public static final String ROR_USER_NAME = "userName";
 	
 	public static final String APPEND_SPACE = " ";
+	
+	public static final String ROR_USER_EMAIL = "email";
+	
+	public static final String SIGN_UP_MESSAGE = "signUpMessage";
+	
+	public static final String SIGN_UP_FAILED = "Failed to register the user";
+
+	public static final String SIGN_UP_SUCCESS = "Registered Successfully! Please login to continue.";
 }

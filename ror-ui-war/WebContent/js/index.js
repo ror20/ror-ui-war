@@ -9,7 +9,7 @@ function openNav() {
 
 var request;
 function checkUserIdIFExist() {
-	var v = document.signupform.userId.value;
+	var v = document.signupform.rorUserId.value;
 		var url = "https://ror-rest.herokuapp.com/rest/checkUserExist/"
 				+ v;
 		if(!v){
@@ -43,3 +43,16 @@ function getInfo() {
 		}
 	}
 }
+
+ $('#rorUserPassword, #repassword').on('keyup', function() {
+	if(!$('#repassword').val()){
+		return;
+	}
+	if ($('#rorUserPassword').val() == $('#repassword').val()) {
+		$('#message').html('Matching').css('color', 'green');
+		$('#submitDiv').show();
+	} else{
+		$('#message').html('Not Matching').css('color', 'red');
+	$('#submitDiv').hide();
+	}
+});
