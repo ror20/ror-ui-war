@@ -73,7 +73,8 @@ html, body, h1, h2, h3, h4, h5 {
 					placeholder="Password" required /><br> <input
 					id="loginButton" type="submit" value="Login" /> <a
 					href="signup.jsp"><input id="signupButton" type="button"
-					value="Sign Up" /></a><br> <b><p class="logoutcss">${logoutMessage }</p></b>
+					value="Sign Up" /></a> <a href="forgotPassword.cont">Forgot password.?</a>
+					<br> <b><p class="logoutcss">${logoutMessage }</p></b>
 
 				<%-- <input
 					id="signupButton" type="button" 
