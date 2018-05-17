@@ -103,7 +103,7 @@ public class RORController {
 		String host = "smtp.gmail.com";
 		Properties properties = System.getProperties();
 		properties.setProperty("mail.smtp.host", host);
-		properties.setProperty("mail.smtp.port", "465");
+		//properties.setProperty("mail.smtp.port", "465");
 		properties.setProperty("mail.user", "susasan27@gmail.com");
 		properties.setProperty("mail.password", "sheissosweethotcutee");
 		Session session = Session.getDefaultInstance(properties);
