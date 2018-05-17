@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.ror.model.RORUser;
 import com.ror.model.RORUserToken;
 import com.ror.svc.RORSvc;
+import com.ror.svc.impl.RORSvcImpl;
 
 public final class RORUtils {
 
