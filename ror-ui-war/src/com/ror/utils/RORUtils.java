@@ -28,7 +28,7 @@ import com.ror.svc.RORSvc;
 
 public final class RORUtils {
 
-	@Autowired
+	
 	private static RORSvc rorSvc;
 
 	public static final String convertToJson(Object object) {
@@ -68,6 +68,7 @@ public final class RORUtils {
 	private static RORUserToken generatePasswordResetToken(RORUser user) {
 		Random r = new Random();
 		int number = r.nextInt(100000 - 10000) + 10000;
+		rorSvc = new RORSvcImpl();
 		String token = number + "ror";
 		RORUserToken rorUserToken = new RORUserToken(token, new Date());
 		boolean flag = rorSvc.storeUserToken(user, rorUserToken);
