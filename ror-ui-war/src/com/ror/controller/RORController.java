@@ -102,7 +102,7 @@ public class RORController {
 		if (rorUserId != null) {
 			RORUser user = rorSvc.fetchUser(rorUserId);
 			if (user != null) {
-				tokenStatus = RORUtils.sendPasswordResetMail(user);
+				tokenStatus = RORUtils.sendPasswordResetMail(user,rorSvc);
 				System.out.println(tokenStatus);
 			}
 
