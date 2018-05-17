@@ -3,6 +3,7 @@ package com.ror.svc;
 import java.util.List;
 
 import com.ror.model.RORUser;
+import com.ror.model.RORUserToken;
 import com.ror.vo.RORResponseVO;
 
 public interface RORSvc {
@@ -18,5 +19,9 @@ public interface RORSvc {
 	public List<RORUser> fetchAlluser();
 
 	public RORUser authenticateUser(RORUser user);
+
+	public boolean storeUserToken(RORUser user, RORUserToken rorUserToken);
+
+	public RORUserToken fetchUserToken(String rorUserId);
 
 }

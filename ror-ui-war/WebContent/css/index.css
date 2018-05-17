@@ -1,3 +1,6 @@
+#forgotPasswordDiv{
+	display: block;
+}
 #loginButton {
 	background-color: green;
 	color: white;

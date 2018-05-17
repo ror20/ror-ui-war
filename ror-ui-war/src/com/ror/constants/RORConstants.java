@@ -41,4 +41,26 @@ public class RORConstants {
 	public static final String SIGN_UP_FAILED = "Failed to register the user";
 
 	public static final String SIGN_UP_SUCCESS = "Registered Successfully! Please login to continue.";
+	
+	public static final String EMAIL_SUBJECT = "This is the Subject Line!";
+	
+	public static final String ADMIN_EMAIL_PASSWORD = "sheissosweethotcutee";
+	
+	public static final String MAIL_PASSWORD = "mail.password";
+	
+	public static final String MAIL_USER = "mail.user";
+	
+	public static final String MAIL_SMTP_HOST = "mail.smtp.host";
+	
+	public static final String ASPMX_L_GOOGLE_COM = "aspmx.l.google.com";
+	
+	public static final String ADMIN_EMAIL = "susasan27@gmail.com";
+	
+	public static final String USER_TOKEN = "userToken";
+	
+	public static final String TOKEN_PAGE = "token";
+	
+	public static final String TOKEN_MESSAGE = "tokenStatusMessage";
+	
+	public static final String PASSWORD_RESET_PAGE = "resetPassword";
 }

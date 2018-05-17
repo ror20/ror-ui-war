@@ -64,23 +64,20 @@ html, body, h1, h2, h3, h4, h5 {
 			</center>
 			<p>${loginMessage}</p>
 			<form action="authenticate.cont" method="post">
-
-				<input type="text" name="rorUserId" id="userIdInput"
-					class="w3-input w3-border" placeholder="User Id" maxlength="6"
-					width="50%" required /> <br> <input
-					class="w3-input w3-border" width="100px" type="password"
-					name="rorUserPassword" id="userPasswordInput"
-					placeholder="Password" required /><br> <input
-					id="loginButton" type="submit" value="Login" /> <a
-					href="signup.jsp"><input id="signupButton" type="button"
-					value="Sign Up" /></a> <a href="forgotPassword.cont">Forgot password.?</a>
-					<br> <b><p class="logoutcss">${logoutMessage }</p></b>
-
-				<%-- <input
-					id="signupButton" type="button" 
-					onclick="window.location.href='${pageContext.request.contextPath}/jsp/signup.jsp'"
-					value="Sign Up" /> --%>
-
+				<input type="text" name="rorUserId" id="userIdInput" class="w3-input w3-border" placeholder="User Id" maxlength="6"	width="50%" required /><br>
+				<input class="w3-input w3-border" width="100px" type="password" name="rorUserPassword" id="userPasswordInput" placeholder="Password" required /><br>
+				<input id="loginButton" type="submit" value="Login" />
+				<a href="signup.jsp">
+				<input id="signupButton" type="button" value="Sign Up" /></a>
+				<a id="forgotPasswordLink" href="#forgotPasswordDiv">Forgot password.?</a>
+				<br>
+				<div id="forgotPasswordDiv">
+					<form action="forgotPassword.cont" method="post">
+						<input type="text" name="rorUserId" id="userIdInput" class="w3-input w3-border" placeholder="User Id" maxlength="6"	width="50%" required /><br>
+						<input id="loginButton" type="button" value="Reset Password"/></a>
+					</form>
+				</div>
+				<b><p class="logoutcss">${logoutMessage }</p></b>
 			</form>
 		</div>
 	</div>

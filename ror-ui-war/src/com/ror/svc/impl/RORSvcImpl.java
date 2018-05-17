@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ror.dao.RORDAO;
 import com.ror.model.RORUser;
+import com.ror.model.RORUserToken;
 import com.ror.svc.RORSvc;
 import com.ror.vo.RORResponseVO;
 
@@ -59,5 +60,15 @@ public class RORSvcImpl implements RORSvc {
 			return true;
 		}
 
+	}
+
+	@Override
+	public boolean storeUserToken(RORUser user, RORUserToken token) {
+		return rorDAO.storeUserToken(user,token);
+	}
+
+	@Override
+	public RORUserToken fetchUserToken(String rorUserId) {
+		return rorDAO.fetchUserToken(rorUserId);
 	}
 }

@@ -5,6 +5,7 @@ import static com.ror.constants.RORConstants.LOGIN_INVALID;
 import static com.ror.constants.RORConstants.LOGIN_MESSAGE;
 import static com.ror.constants.RORConstants.LOGIN_PAGE;
 import static com.ror.constants.RORConstants.LOGOUT_MESSAGE;
+import static com.ror.constants.RORConstants.PASSWORD_RESET_PAGE;
 import static com.ror.constants.RORConstants.PROFILE_PAGE;
 import static com.ror.constants.RORConstants.ROR_USER_EMAIL;
 import static com.ror.constants.RORConstants.ROR_USER_ID;
@@ -14,16 +15,11 @@ import static com.ror.constants.RORConstants.SIGNUP_PAGE;
 import static com.ror.constants.RORConstants.SIGN_UP_FAILED;
 import static com.ror.constants.RORConstants.SIGN_UP_MESSAGE;
 import static com.ror.constants.RORConstants.SIGN_UP_SUCCESS;
+import static com.ror.constants.RORConstants.TOKEN_MESSAGE;
+import static com.ror.constants.RORConstants.TOKEN_PAGE;
 import static com.ror.constants.RORConstants.USER_NAME;
+import static com.ror.constants.RORConstants.USER_TOKEN;
 
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,11 +30,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ror.model.RORUser;
+import com.ror.model.RORUserToken;
 import com.ror.svc.RORSvc;
+import com.ror.utils.RORUtils;
 
 @Controller
 public class RORController {
 
+	
 	@Autowired
 	private RORSvc rorSvc;
 
@@ -98,28 +97,39 @@ public class RORController {
 	@RequestMapping("/forgotPassword")
 	public ModelAndView forgotPassword(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
-		String to = "sudarsansolai@gmail.com";
-		String from = "susasan27@gmail.com";
-		String host = "aspmx.l.google.com";
-		Properties properties = System.getProperties();
-		properties.setProperty("mail.smtp.host", host);
-		//properties.setProperty("mail.smtp.port", "465");
-		properties.setProperty("mail.user", "susasan27@gmail.com");
-		properties.setProperty("mail.password", "sheissosweethotcutee");
-		Session session = Session.getDefaultInstance(properties);
-		try {
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(from));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("This is the Subject Line!");
-			message.setText("This is actual message");
-			Transport.send(message);
-			System.out.println("Sent message successfully....");
-		} catch (MessagingException mex) {
-			mex.printStackTrace();
+		String rorUserId = request.getParameter(ROR_USER_ID);
+		String tokenStatus= null;
+		if (rorUserId != null) {
+			RORUser user = rorSvc.fetchUser(rorUserId);
+			if (user != null) {
+				tokenStatus = RORUtils.sendPasswordResetMail(user);
+				System.out.println(tokenStatus);
+			}
+
 		}
-		mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, "Instruction sent to mail");
+		mav = new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus);
+		mav.addObject(ROR_USER_ID,rorUserId);
 		return mav;
 	}
-	
+
+	@RequestMapping("/tokenCheck")
+	public ModelAndView checkUserToken(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		String rorUserId = request.getParameter(ROR_USER_ID);
+		String rorUserToken= request.getParameter(USER_TOKEN);
+		System.out.println("tokenCheck user ID is "+rorUserId);
+		RORUserToken token =null;
+		if (rorUserId != null) {
+			token = rorSvc.fetchUserToken(rorUserId);
+		}
+		if(token!=null) {
+			if(token.getToken().equals(rorUserToken)) {
+				mav = new ModelAndView(PASSWORD_RESET_PAGE);
+			}else {
+				String tokenStatus = "Token Incorrect";
+				mav =  new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus ); 
+			}
+		}
+		return mav;
+	}
 }

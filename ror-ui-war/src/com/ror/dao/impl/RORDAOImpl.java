@@ -10,6 +10,7 @@ import static com.ror.utils.RORUtils.convertToPOJO;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,14 @@ import com.mongodb.client.model.Filters;
 import com.ror.dao.RORDAO;
 import com.ror.exception.RORException;
 import com.ror.model.RORUser;
+import com.ror.model.RORUserToken;
 import com.ror.vo.RORResponseVO;
 
 public class RORDAOImpl implements RORDAO {
+
+	private static final String ROR_USER_LIST_TOKEN_ID = "RORUserList_TOKEN";
+
+	public static final String RORUSER_TOKEN_LIST = "roruserTokenlist";
 
 	private static MongoDatabase mongoDatabase = null;
 
@@ -61,7 +67,7 @@ public class RORDAOImpl implements RORDAO {
 				mongoCollection.insertOne(document1);
 				return true;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Exception occured to store the user data.");
 			e.printStackTrace();
 			return false;
@@ -188,11 +194,67 @@ public class RORDAOImpl implements RORDAO {
 	public RORUser authenticateUser(RORUser user) {
 		RORUser fetchedUser = fetchUser(user.getUserId());
 		if (fetchedUser != null) {
-			if (user.getUserId().equals(fetchedUser.getUserId()) && user.getPassword().equals(fetchedUser.getPassword())) {
+			if (user.getUserId().equals(fetchedUser.getUserId())
+					&& user.getPassword().equals(fetchedUser.getPassword())) {
 				return fetchedUser;
 			}
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean storeUserToken(RORUser user, RORUserToken token) {
+		Document document1 = null;
+		Map<String, String> userMap = null;
+		try {
+			System.out.println("Inside store user token method.");
+			setMongoParameters();
+			FindIterable<Document> findIterable = mongoCollection.find();
+			for (Document document : findIterable) {
+				if (document.containsKey(RORUSER_TOKEN_LIST)) {
+					document1 = document;
+					userMap = (Map<String, String>) convertToPOJO(document.get(RORUSER_TOKEN_LIST), Map.class);
+					break;
+				}
+			}
+			userMap.put(user.getUserId(), convertToJson(token));
+			mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, ROR_USER_LIST_TOKEN_ID));
+			document1.put(RORUSER_TOKEN_LIST, convertToJson(userMap));
+			mongoCollection.insertOne(document1);
+			return true;
+
+		} catch (Exception e) {
+			System.out.println("Exception occured to store the user token data.");
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public RORUserToken fetchUserToken(String rorUserId) {
+		Map<String, String> userMap = null;
+		RORUserToken token = null;
+		try {
+			System.out.println("Inside fetch user token method.");
+			setMongoParameters();
+			FindIterable<Document> findIterable = mongoCollection.find();
+			for (Document document : findIterable) {
+				if (document.containsKey(RORUSER_TOKEN_LIST)) {
+					userMap = (Map<String, String>) convertToPOJO(document.get(RORUSER_TOKEN_LIST), Map.class);
+					break;
+				}
+			}
+			String userTokenString = userMap.get(rorUserId);
+			if (!(userTokenString.isEmpty() || userTokenString == null)) {
+				token = (RORUserToken)convertToPOJO(userTokenString, RORUserToken.class);
+			}
+		} catch (Exception e) {
+			System.out.println("Exception occured to store the user token data.");
+			e.printStackTrace();
+		}
+		return token;
 	}
 
 }

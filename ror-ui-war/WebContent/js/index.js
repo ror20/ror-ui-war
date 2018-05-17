@@ -56,3 +56,10 @@ function getInfo() {
 	$('#submitDiv').hide();
 	}
 });
+ 
+
+
+$('#forgotPasswordLink').click(function(){
+	$('#forgotPasswordDiv').show();
+});
+ 
