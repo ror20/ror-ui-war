@@ -100,7 +100,7 @@ public class RORController {
 		ModelAndView mav = null;
 		String to = "sudarsansolai@gmail.com";
 		String from = "susasan27@gmail.com";
-		String host = "smtp.gmail.com";
+		String host = "aspmx.l.google.com";
 		Properties properties = System.getProperties();
 		properties.setProperty("mail.smtp.host", host);
 		//properties.setProperty("mail.smtp.port", "465");
