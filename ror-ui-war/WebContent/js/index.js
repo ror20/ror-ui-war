@@ -43,7 +43,7 @@ function getInfo() {
 		}
 	}
 }
-
+$(document).ready(function(){
  $('#rorUserPassword, #repassword').on('keyup', function() {
 	if(!$('#repassword').val()){
 		return;
@@ -62,4 +62,4 @@ function getInfo() {
 $('#forgotPasswordLink').click(function(){
 	$('#forgotPasswordDiv').show();
 });
- 
+});
