@@ -22,8 +22,8 @@ function checkUserIdIFExist() {
 	}
 
 	try {
-		request.onreadystatechange = getInfo;
 		request.setRequestHeader('Authorization', 'Basic YWthc2g6YWthc2g=' );
+		request.onreadystatechange = getInfo;
 		request.open("GET", url, true);
 		request.send();
 	} catch (e) {
