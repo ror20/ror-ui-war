@@ -134,7 +134,8 @@ public class RORController {
 				}
 			}else {
 				String tokenStatus = "Token Incorrect";
-				mav =  new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus); 
+				mav =  new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus);
+				mav.addObject(ROR_USER_ID,rorUserId);
 			}
 		}
 		return mav;

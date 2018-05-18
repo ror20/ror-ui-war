@@ -42,7 +42,7 @@ public class RORConstants {
 
 	public static final String SIGN_UP_SUCCESS = "Registered Successfully! Please login to continue.";
 	
-	public static final String EMAIL_SUBJECT = "This is the Subject Line!";
+	public static final String EMAIL_SUBJECT = "ROR - Password Reset Instruction";
 	
 	public static final String ADMIN_EMAIL_PASSWORD = "sheissosweethotcutee";
 	
