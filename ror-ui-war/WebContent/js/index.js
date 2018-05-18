@@ -22,9 +22,9 @@ function checkUserIdIFExist() {
 	}
 
 	try {
-		request.setRequestHeader('Authorization', 'Basic YWthc2g6YWthc2g=' );
 		request.onreadystatechange = getInfo;
 		request.open("GET", url, true);
+		request.setRequestHeader('Authorization', 'Basic YWthc2g6YWthc2g=' );
 		request.send();
 	} catch (e) {
 		alert(e);
