@@ -52,7 +52,7 @@ html, body, h1, h2, h3, h4, h5 {
 	<form action="tokenCheck.cont" method="post">
 		<input type="hidden" name="rorUserId" id="userIdInput"  placeholder="User Id" maxlength="6" value="${rorUserId }" required /><br>
 		<input type="text" name= "userToken" id="userToken"  class="w3-input w3-border" placeholder="Enter the security token" required />
-		<input type="submit" id="tokenCheckSubmit" value="Check Token">
+		<input type="submit" id="tokenCheckSubmit" value="Check Token"><br>
 		<b>${tokenStatusMessage }</b>
 	</form>
 	</div>
