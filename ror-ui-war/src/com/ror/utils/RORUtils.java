@@ -29,7 +29,6 @@ import com.ror.svc.impl.RORSvcImpl;
 
 public final class RORUtils {
 
-
 	public static final String convertToJson(Object object) {
 		return new Gson().toJson(object);
 	}
@@ -38,7 +37,7 @@ public final class RORUtils {
 		return new Gson().fromJson((String) key, classObject);
 	}
 
-	public static String sendPasswordResetMail(RORUser user,RORSvc rorSvc) {
+	public static String sendPasswordResetMail(RORUser user, RORSvc rorSvc) {
 		String to = user.getEmailId();
 		Properties properties = System.getProperties();
 		properties.setProperty(MAIL_SMTP_HOST, ASPMX_L_GOOGLE_COM); // properties.setProperty("mail.smtp.port", "465");
@@ -50,21 +49,23 @@ public final class RORUtils {
 			message.setFrom(new InternetAddress(ADMIN_EMAIL));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(EMAIL_SUBJECT);
-			RORUserToken token = generatePasswordResetToken(user,rorSvc);
-			if(token!=null) {
-			message.setText("Hello " + user.getUserName() + "." + "\nYour Security token is " + token.getToken());
-			Transport.send(message);
-			System.out.println("Sent message successfully....");}
-			else {
+			RORUserToken token = generatePasswordResetToken(user, rorSvc);
+			if (token != null) {
+				message.setText("Hello " + user.getUserName() + "." + "\nYour Security token is " + token.getToken());
+				Transport.send(message);
+				System.out.println("Sent message successfully....");
+			} else {
 				return "Failed to generate User token";
 			}
 		} catch (MessagingException mex) {
 			mex.printStackTrace();
+			rorSvc.deleteUserToken(user.getUserId());
+			return "Failed to generate User token";
 		}
 		return "User token generated successfully";
 	}
 
-	private static RORUserToken generatePasswordResetToken(RORUser user,RORSvc rorSvc) {
+	private static RORUserToken generatePasswordResetToken(RORUser user, RORSvc rorSvc) {
 		Random r = new Random();
 		int number = r.nextInt(100000 - 10000) + 10000;
 		String token = number + "ror";

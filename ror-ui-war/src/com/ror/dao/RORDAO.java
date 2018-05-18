@@ -23,4 +23,6 @@ public interface RORDAO {
 	public boolean storeUserToken(RORUser user, RORUserToken token);
 
 	public RORUserToken fetchUserToken(String rorUserId);
+
+	public void deleteUserToken(String userId);
 }

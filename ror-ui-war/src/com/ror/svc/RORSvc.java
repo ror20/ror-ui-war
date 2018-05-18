@@ -24,4 +24,6 @@ public interface RORSvc {
 
 	public RORUserToken fetchUserToken(String rorUserId);
 
+	public void deleteUserToken(String userId);
+
 }

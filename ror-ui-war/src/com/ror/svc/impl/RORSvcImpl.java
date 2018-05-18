@@ -71,4 +71,9 @@ public class RORSvcImpl implements RORSvc {
 	public RORUserToken fetchUserToken(String rorUserId) {
 		return rorDAO.fetchUserToken(rorUserId);
 	}
+
+	@Override
+	public void deleteUserToken(String userId) {
+		rorDAO.deleteUserToken(userId);
+	}
 }

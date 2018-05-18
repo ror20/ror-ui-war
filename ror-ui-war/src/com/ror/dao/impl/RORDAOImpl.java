@@ -261,4 +261,31 @@ public class RORDAOImpl implements RORDAO {
 		return token;
 	}
 
+	@Override
+	public void deleteUserToken(String userId) {
+		Document document1 = null;
+		Map<String, String> userMap = null;
+		try {
+			System.out.println("Inside delete user token method.");
+			setMongoParameters();
+			FindIterable<Document> findIterable = mongoCollection.find();
+			for (Document document : findIterable) {
+				if (document.containsKey(RORUSER_TOKEN_LIST)) {
+					document1 = document;
+					userMap = (Map<String, String>) convertToPOJO(document.get(RORUSER_TOKEN_LIST), Map.class);
+					break;
+				}
+			}
+			userMap.remove(userId);
+			System.out.println("Removed User Token for the ID:"+userId);
+			mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, ROR_USER_LIST_TOKEN_ID));
+			document1.put(RORUSER_TOKEN_LIST, convertToJson(userMap));
+			mongoCollection.insertOne(document1);
+
+		} catch (Exception e) {
+			System.out.println("Exception occured to remove the user token data.");
+			e.printStackTrace();
+		}
+	}
+
 }
