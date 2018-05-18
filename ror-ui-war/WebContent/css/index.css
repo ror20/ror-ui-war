@@ -1,6 +1,7 @@
-#forgotPasswordDiv{
+#forgotPasswordDiv {
 	display: none;
 }
+
 #loginButton {
 	background-color: green;
 	color: white;
@@ -26,16 +27,15 @@
 	color: white;
 }
 
-.helloUser{
+.helloUser {
 	background-color: #000000;
 	color: white;
 }
 /* .logoutcss{
 	margin-left: 730px;
 } */
-
-#storeUserForm{
+#storeUserForm {
 	margin-top: 200px;
 	margin-left: 100px;
-	width:200px;
+	width: 200px;
 }

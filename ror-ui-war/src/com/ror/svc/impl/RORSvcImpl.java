@@ -34,7 +34,7 @@ public class RORSvcImpl implements RORSvc {
 	}
 
 	@Override
-	public RORResponseVO updateUser(RORUser user) {
+	public boolean updateUser(RORUser user) {
 		return rorDAO.updateUser(user);
 	}
 

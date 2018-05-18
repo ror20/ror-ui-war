@@ -63,4 +63,10 @@ public class RORConstants {
 	public static final String TOKEN_MESSAGE = "tokenStatusMessage";
 	
 	public static final String PASSWORD_RESET_PAGE = "resetPassword";
+
+	public  static final String RESET_MESSAGE = "resetMessage";
+
+	public static final String PASSWORD_RESET_FAILED = "Failed to reset the password";
+	
+	public static final String PASSWORD_RESET_SUCCESSFULLY = "Password Reset Successfully! Please Login to continue.";
 }

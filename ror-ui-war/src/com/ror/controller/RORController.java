@@ -5,8 +5,11 @@ import static com.ror.constants.RORConstants.LOGIN_INVALID;
 import static com.ror.constants.RORConstants.LOGIN_MESSAGE;
 import static com.ror.constants.RORConstants.LOGIN_PAGE;
 import static com.ror.constants.RORConstants.LOGOUT_MESSAGE;
+import static com.ror.constants.RORConstants.PASSWORD_RESET_FAILED;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_PAGE;
+import static com.ror.constants.RORConstants.PASSWORD_RESET_SUCCESSFULLY;
 import static com.ror.constants.RORConstants.PROFILE_PAGE;
+import static com.ror.constants.RORConstants.RESET_MESSAGE;
 import static com.ror.constants.RORConstants.ROR_USER_EMAIL;
 import static com.ror.constants.RORConstants.ROR_USER_ID;
 import static com.ror.constants.RORConstants.ROR_USER_NAME;
@@ -124,11 +127,37 @@ public class RORController {
 		}
 		if(token!=null) {
 			if(token.getToken().equals(rorUserToken)) {
-				mav = new ModelAndView(PASSWORD_RESET_PAGE);
+				mav = new ModelAndView(PASSWORD_RESET_PAGE,ROR_USER_ID,rorUserId);
+				RORUser user = rorSvc.fetchUser(rorUserId);
+				if(user!=null) {
+					mav.addObject(ROR_USER_NAME, user.getUserName());
+				}
 			}else {
 				String tokenStatus = "Token Incorrect";
-				mav =  new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus ); 
+				mav =  new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus); 
 			}
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/resetPassword")
+	public ModelAndView resetUserPassword(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mav= null;
+		String rorUserId = request.getParameter(ROR_USER_ID);
+		String password = request.getParameter(ROR_USER_PASSWORD);
+		RORUser user = rorSvc.fetchUser(rorUserId);
+		if(user!=null) {
+			user.setPassword(password);
+			boolean flag = rorSvc.updateUser(user);
+			if(!flag) {
+				mav = new ModelAndView(PASSWORD_RESET_PAGE,ROR_USER_ID,rorUserId);
+				mav.addObject(RESET_MESSAGE, PASSWORD_RESET_FAILED);
+			}else {
+				mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, PASSWORD_RESET_SUCCESSFULLY);
+			}
+		}else {
+			mav = new ModelAndView(PASSWORD_RESET_PAGE,ROR_USER_ID,rorUserId);
+			mav.addObject(RESET_MESSAGE, PASSWORD_RESET_FAILED);
 		}
 		return mav;
 	}
