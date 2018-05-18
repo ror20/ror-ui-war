@@ -27,6 +27,7 @@ function checkUserIdIFExist() {
 		request.open("GET", url, true);
 		request.send();
 	} catch (e) {
+		alert(e);
 		alert("Unable to connect to server");
 	}
 }
