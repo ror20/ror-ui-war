@@ -121,7 +121,7 @@ public class RORDAOImpl implements RORDAO {
 				mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, DOCUMENT_ID_VALUE));
 				document1.put(USERS_DOCUMENT, convertToJson(userMap));
 				mongoCollection.insertOne(document1);
-			return true;
+				return true;
 
 			}
 		} catch (RORException e) {
@@ -237,7 +237,7 @@ public class RORDAOImpl implements RORDAO {
 		Map<String, String> userMap = null;
 		RORUserToken token = null;
 		try {
-			System.out.println("Inside fetch user token method.");
+			System.out.println("Inside fetch user token method to fetch token for the User."+rorUserId);
 			setMongoParameters();
 			FindIterable<Document> findIterable = mongoCollection.find();
 			for (Document document : findIterable) {
@@ -247,8 +247,12 @@ public class RORDAOImpl implements RORDAO {
 				}
 			}
 			String userTokenString = userMap.get(rorUserId);
-			if (!(userTokenString.isEmpty() || userTokenString == null)) {
-				token = (RORUserToken)convertToPOJO(userTokenString, RORUserToken.class);
+			System.out.println("UserToken Fetched for " + rorUserId + " is " + userTokenString);
+			if (userTokenString != null) {
+				if (!userTokenString.isEmpty()) {
+					token = (RORUserToken) convertToPOJO(userTokenString, RORUserToken.class);
+				}
+
 			}
 		} catch (Exception e) {
 			System.out.println("Exception occured to store the user token data.");
