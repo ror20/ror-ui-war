@@ -40,7 +40,6 @@ import com.ror.utils.RORUtils;
 @Controller
 public class RORController {
 
-	
 	@Autowired
 	private RORSvc rorSvc;
 
@@ -101,17 +100,17 @@ public class RORController {
 	public ModelAndView forgotPassword(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
 		String rorUserId = request.getParameter(ROR_USER_ID);
-		String tokenStatus= null;
+		String tokenStatus = null;
 		if (rorUserId != null) {
 			RORUser user = rorSvc.fetchUser(rorUserId);
 			if (user != null) {
-				tokenStatus = RORUtils.sendPasswordResetMail(user,rorSvc);
+				tokenStatus = RORUtils.sendPasswordResetMail(user, rorSvc);
 				System.out.println(tokenStatus);
 			}
 
 		}
-		mav = new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus);
-		mav.addObject(ROR_USER_ID,rorUserId);
+		mav = new ModelAndView(TOKEN_PAGE, TOKEN_MESSAGE, tokenStatus);
+		mav.addObject(ROR_USER_ID, rorUserId);
 		return mav;
 	}
 
@@ -119,45 +118,49 @@ public class RORController {
 	public ModelAndView checkUserToken(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
 		String rorUserId = request.getParameter(ROR_USER_ID);
-		String rorUserToken= request.getParameter(USER_TOKEN);
-		System.out.println("tokenCheck user ID is "+rorUserId);
-		RORUserToken token =null;
+		String rorUserToken = request.getParameter(USER_TOKEN);
+		System.out.println("tokenCheck user ID is " + rorUserId);
+		RORUserToken token = null;
 		if (rorUserId != null) {
 			token = rorSvc.fetchUserToken(rorUserId);
 		}
-		if(token!=null) {
-			if(token.getToken().equals(rorUserToken)) {
-				mav = new ModelAndView(PASSWORD_RESET_PAGE,ROR_USER_ID,rorUserId);
+		if (token != null) {
+			if (token.getToken().equals(rorUserToken)) {
+				mav = new ModelAndView(PASSWORD_RESET_PAGE, ROR_USER_ID, rorUserId);
 				RORUser user = rorSvc.fetchUser(rorUserId);
-				if(user!=null) {
+				if (user != null) {
 					mav.addObject(ROR_USER_NAME, user.getUserName());
 				}
-			}else {
+			} else {
 				String tokenStatus = "Token Incorrect";
-				mav =  new ModelAndView(TOKEN_PAGE,TOKEN_MESSAGE,tokenStatus);
-				mav.addObject(ROR_USER_ID,rorUserId);
+				mav = new ModelAndView(TOKEN_PAGE, TOKEN_MESSAGE, tokenStatus);
+				mav.addObject(ROR_USER_ID, rorUserId);
 			}
+		} else {
+			String tokenStatus = "Token Incorrect";
+			mav = new ModelAndView(TOKEN_PAGE, TOKEN_MESSAGE, tokenStatus);
+			mav.addObject(ROR_USER_ID, rorUserId);
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping("/resetPassword")
-	public ModelAndView resetUserPassword(HttpServletRequest request,HttpServletResponse response) {
-		ModelAndView mav= null;
+	public ModelAndView resetUserPassword(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
 		String rorUserId = request.getParameter(ROR_USER_ID);
 		String password = request.getParameter(ROR_USER_PASSWORD);
 		RORUser user = rorSvc.fetchUser(rorUserId);
-		if(user!=null) {
+		if (user != null) {
 			user.setPassword(password);
 			boolean flag = rorSvc.updateUser(user);
-			if(!flag) {
-				mav = new ModelAndView(PASSWORD_RESET_PAGE,ROR_USER_ID,rorUserId);
+			if (!flag) {
+				mav = new ModelAndView(PASSWORD_RESET_PAGE, ROR_USER_ID, rorUserId);
 				mav.addObject(RESET_MESSAGE, PASSWORD_RESET_FAILED);
-			}else {
+			} else {
 				mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, PASSWORD_RESET_SUCCESSFULLY);
 			}
-		}else {
-			mav = new ModelAndView(PASSWORD_RESET_PAGE,ROR_USER_ID,rorUserId);
+		} else {
+			mav = new ModelAndView(PASSWORD_RESET_PAGE, ROR_USER_ID, rorUserId);
 			mav.addObject(RESET_MESSAGE, PASSWORD_RESET_FAILED);
 		}
 		return mav;
