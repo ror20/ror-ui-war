@@ -26,6 +26,7 @@ function checkUserIdIFExist() {
 		request.open("GET", url, true);
 		request.setRequestHeader("Authorization", 'Basic YWthc2g6YWthc2g=');
 		request.send();
+		console.log(request.responseText);
 	} catch (e) {
 		alert(e);
 		alert("Unable to connect to server");
