@@ -13,6 +13,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/png" href="images/RORLogo.png" />
+<link rel="stylesheet" href="css/index.css">
 <title>Room Of Requirements</title>
 </head>
 <style>
@@ -39,7 +40,7 @@ html, body, h1, h2, h3, h4, h5 {
 	<div id="navDemo"
 		class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
 		<a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-		<a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">${userName }</a> <a
+		<a href="updateProfile.jsp" class="w3-bar-item w3-button w3-padding-large w3-black">${userName }</a> <a
 			href="#" class="w3-bar-item w3-button w3-padding-large">Blogs</a> <a
 			href="#" class="w3-bar-item w3-button w3-padding-large">Hot News</a>
 		<a href="#" class="w3-bar-item w3-button w3-padding-large">Contest</a>
@@ -47,6 +48,6 @@ html, body, h1, h2, h3, h4, h5 {
 			us</a> <a href="logout.cont"
 			class="w3-bar-item w3-button w3-padding-large">Logout</a>
 	</div>
-
+<div id="profileMessageDiv"><b><p>${profileMessage }</p></b></div>
 </body>
 </html>

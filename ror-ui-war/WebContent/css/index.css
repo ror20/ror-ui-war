@@ -39,6 +39,11 @@
 	margin-left: 100px;
 	width: 200px;
 }
+#updateUserForm{
+	margin-top: 200px;
+	margin-left: 100px;
+	width: 200px;
+}
 
 #tokenCheckForm{
 	margin-top: 100px;
@@ -57,5 +62,19 @@
 
 #tokenCheckSubmit:hover {
 	background-color: #8730AB;
+	color: white;
+}
+
+.editButton{
+	background-color: #3498DB;
+	color: white;
+	border: none;
+	padding: 16px 14px;
+	margin-left: 30px;
+	margin-top :10px
+}
+
+.editButton:hover{
+	background-color: #5DADE2;
 	color: white;
 }

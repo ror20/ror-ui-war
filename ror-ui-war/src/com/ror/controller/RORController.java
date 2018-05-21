@@ -8,6 +8,7 @@ import static com.ror.constants.RORConstants.LOGOUT_MESSAGE;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_FAILED;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_PAGE;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_SUCCESSFULLY;
+import static com.ror.constants.RORConstants.PROFILE_MESSAGE;
 import static com.ror.constants.RORConstants.PROFILE_PAGE;
 import static com.ror.constants.RORConstants.RESET_MESSAGE;
 import static com.ror.constants.RORConstants.ROR_USER_EMAIL;
@@ -20,7 +21,12 @@ import static com.ror.constants.RORConstants.SIGN_UP_MESSAGE;
 import static com.ror.constants.RORConstants.SIGN_UP_SUCCESS;
 import static com.ror.constants.RORConstants.TOKEN_MESSAGE;
 import static com.ror.constants.RORConstants.TOKEN_PAGE;
+import static com.ror.constants.RORConstants.UPDATED_USER_DETAILS_FAILED;
+import static com.ror.constants.RORConstants.UPDATED_USER_DETAILS_SUCCESS;
+import static com.ror.constants.RORConstants.UPDATE_MESSAGE;
+import static com.ror.constants.RORConstants.UPDATE_USER_PAGE;
 import static com.ror.constants.RORConstants.USER_NAME;
+import static com.ror.constants.RORConstants.USER_OBJECT;
 import static com.ror.constants.RORConstants.USER_TOKEN;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +46,7 @@ import com.ror.utils.RORUtils;
 @Controller
 public class RORController {
 
+	
 	@Autowired
 	private RORSvc rorSvc;
 
@@ -53,6 +60,7 @@ public class RORController {
 			HttpSession session = request.getSession();
 			session.setAttribute(ROR_USER_NAME, user.getUserName());
 			mav = new ModelAndView(PROFILE_PAGE, USER_NAME, user.getUserName());
+			session.setAttribute(USER_OBJECT, user);
 		} else {
 			mav = new ModelAndView(LOGIN_PAGE, LOGIN_MESSAGE, LOGIN_INVALID);
 		}
@@ -165,4 +173,37 @@ public class RORController {
 		}
 		return mav;
 	}
+
+	@RequestMapping("/updateUser")
+	public ModelAndView updateUserRecord(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		String userName = request.getParameter(ROR_USER_NAME);
+		String userId = request.getParameter(ROR_USER_ID);
+		String password = request.getParameter(ROR_USER_PASSWORD);
+		String emailId = request.getParameter(ROR_USER_EMAIL);
+		RORUser user = (RORUser) request.getSession().getAttribute(USER_OBJECT);
+		if (user == null) {
+			System.out.println("User is null from session");
+		} else {
+			if (userName != null && emailId != null && password != null) {
+				RORUser updatedUser = new RORUser(userName, userId, emailId, password);
+				boolean updateStatus = rorSvc.updateUser(updatedUser);
+				if (updateStatus) {
+					System.out.println("Updated user successfully!");
+					mav = new ModelAndView(PROFILE_PAGE, USER_NAME, user.getUserName());
+					mav.addObject(PROFILE_MESSAGE,UPDATED_USER_DETAILS_SUCCESS);
+					mav.addObject(USER_OBJECT, updatedUser);
+				}else {
+					System.out.println("Updated user Failed!");
+					mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE,UPDATED_USER_DETAILS_FAILED );
+				}
+				
+			}else {
+				System.out.println("Updated user Failed!");
+				mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE,UPDATED_USER_DETAILS_FAILED );
+			}
+		}
+		return mav;
+	}
+
 }
