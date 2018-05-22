@@ -51,7 +51,7 @@ html, body, h1, h2, h3, h4, h5 {
 	<b>Please reset your password</b>
 	<form name="resetPasswordForm" action="resetPassword.cont" method="post">
 	<input type="hidden" name="rorUserId" id="userIdInput"  placeholder="User Id" maxlength="6" value="${rorUserId }" required /><br><br>
-	<input type="password" id="rorUserPassword" name="rorUserPassword" class="w3-input" placeholder="Enter the Password" required />
+	<input type="password" id="rorUserPassword" name="rorUserPassword" class="w3-input" placeholder="Enter the New Password" required />
 	<input type="password" id="repassword" name="repassword" class="w3-input" placeholder="ReEnter the Password" required />
 	<span id='message' name="span"></span><br>
 	<div id="submitDiv">

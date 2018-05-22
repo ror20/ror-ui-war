@@ -15,6 +15,7 @@ import static com.ror.constants.RORConstants.ROR_USER_EMAIL;
 import static com.ror.constants.RORConstants.ROR_USER_ID;
 import static com.ror.constants.RORConstants.ROR_USER_NAME;
 import static com.ror.constants.RORConstants.ROR_USER_PASSWORD;
+import static com.ror.constants.RORConstants.SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE;
 import static com.ror.constants.RORConstants.SIGNUP_PAGE;
 import static com.ror.constants.RORConstants.SIGN_UP_FAILED;
 import static com.ror.constants.RORConstants.SIGN_UP_MESSAGE;
@@ -77,6 +78,7 @@ public class RORController {
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		String message = "Thank You For visiting";
+		System.out.println("Session status:"+request.getSession());
 		System.out.println("Session name: " + request.getSession().getAttribute(ROR_USER_NAME));
 		if (request.getSession().getAttribute(ROR_USER_NAME) != null) {
 			String userName = (String) request.getSession().getAttribute(ROR_USER_NAME);
@@ -174,6 +176,26 @@ public class RORController {
 		} else {
 			mav = new ModelAndView(PASSWORD_RESET_PAGE, ROR_USER_ID, rorUserId);
 			mav.addObject(RESET_MESSAGE, PASSWORD_RESET_FAILED);
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/updateProfile")
+	public ModelAndView redirectingToUpdateProfile(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mav = null;
+		HttpSession session = request.getSession();
+		if(session!=null) {
+			RORUser user =(RORUser)session.getAttribute(USER_OBJECT);
+			if(user!=null) {
+				System.out.println("Redirecting to Update Profile Page");
+				mav=new ModelAndView(UPDATE_USER_PAGE);
+			}else {
+				System.out.println("User is Null.. Redirecting to Login page");
+				mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
+			}
+		}else {
+			System.out.println("Session is Null.. Redirecting to Login page");
+			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
 		}
 		return mav;
 	}
