@@ -26,11 +26,7 @@ public class RORSvcImpl implements RORSvc {
 
 	@Override
 	public RORUser fetchUser(String userId) {
-		RORUser user = rorDAO.fetchUser(userId);
-		if (user == null) {
-			return new RORUser(null, null, null, null);
-		}
-		return user;
+		return rorDAO.fetchUser(userId);
 	}
 
 	@Override

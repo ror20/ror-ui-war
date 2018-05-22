@@ -25,6 +25,7 @@ import static com.ror.constants.RORConstants.UPDATED_USER_DETAILS_FAILED;
 import static com.ror.constants.RORConstants.UPDATED_USER_DETAILS_SUCCESS;
 import static com.ror.constants.RORConstants.UPDATE_MESSAGE;
 import static com.ror.constants.RORConstants.UPDATE_USER_PAGE;
+import static com.ror.constants.RORConstants.USER_DOES_NOT_EXIST;
 import static com.ror.constants.RORConstants.USER_NAME;
 import static com.ror.constants.RORConstants.USER_OBJECT;
 import static com.ror.constants.RORConstants.USER_TOKEN;
@@ -46,6 +47,7 @@ import com.ror.utils.RORUtils;
 @Controller
 public class RORController {
 
+	
 	
 	@Autowired
 	private RORSvc rorSvc;
@@ -114,6 +116,8 @@ public class RORController {
 			if (user != null) {
 				tokenStatus = RORUtils.sendPasswordResetMail(user, rorSvc);
 				System.out.println(tokenStatus);
+			}else {
+				return new ModelAndView(LOGIN_PAGE,LOGOUT_MESSAGE,USER_DOES_NOT_EXIST);
 			}
 
 		}
@@ -184,13 +188,14 @@ public class RORController {
 		RORUser user = (RORUser) request.getSession().getAttribute(USER_OBJECT);
 		if (user == null) {
 			System.out.println("User is null from session");
+			mav = new ModelAndView(PROFILE_PAGE);
 		} else {
 			if (userName != null && emailId != null && password != null) {
 				RORUser updatedUser = new RORUser(userName, userId, emailId, password);
 				boolean updateStatus = rorSvc.updateUser(updatedUser);
 				if (updateStatus) {
 					System.out.println("Updated user successfully!");
-					mav = new ModelAndView(PROFILE_PAGE, USER_NAME, user.getUserName());
+					mav = new ModelAndView(PROFILE_PAGE, USER_NAME, updatedUser.getUserName());
 					mav.addObject(PROFILE_MESSAGE,UPDATED_USER_DETAILS_SUCCESS);
 					mav.addObject(USER_OBJECT, updatedUser);
 				}else {

@@ -81,4 +81,6 @@ public class RORConstants {
 	public static final String UPDATE_MESSAGE = "updateMessage";
 
 	public static final String UPDATE_USER_PAGE = "updateProfile";
+	
+	public static final String USER_DOES_NOT_EXIST = "User Does Not Exist!";
 }
