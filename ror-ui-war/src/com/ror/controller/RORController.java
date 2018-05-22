@@ -197,7 +197,8 @@ public class RORController {
 					System.out.println("Updated user successfully!");
 					mav = new ModelAndView(PROFILE_PAGE, USER_NAME, updatedUser.getUserName());
 					mav.addObject(PROFILE_MESSAGE,UPDATED_USER_DETAILS_SUCCESS);
-					mav.addObject(USER_OBJECT, updatedUser);
+					HttpSession session = request.getSession();
+					session.setAttribute(USER_OBJECT, updatedUser);
 				}else {
 					System.out.println("Updated user Failed!");
 					mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE,UPDATED_USER_DETAILS_FAILED );

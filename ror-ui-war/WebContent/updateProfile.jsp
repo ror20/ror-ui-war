@@ -47,7 +47,8 @@ html, body, h1, h2, h3, h4, h5 {
 			href="#" class="w3-bar-item w3-button w3-padding-large">Hot News</a>
 		<a href="#" class="w3-bar-item w3-button w3-padding-large">Contest</a>
 		<a href="#" class="w3-bar-item w3-button w3-padding-large">About
-			us</a>
+			us</a><a href="logout.cont"
+			class="w3-bar-item w3-button w3-padding-large">Logout</a>
 	</div>
 	
 	<% 	RORUser user = (RORUser)session.getAttribute("user"); %>
