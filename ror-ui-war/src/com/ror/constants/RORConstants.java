@@ -85,4 +85,13 @@ public class RORConstants {
 	public static final String USER_DOES_NOT_EXIST = "User Does Not Exist!";
 
 	public static final String SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE = "Session Invalid! Please Login to coninue";
+	
+	public static final String ACTIVE = "active";
+	
+	public static final String YES = "Y";
+	
+	public static final String NO = "N";
+	
+	public static final String INDEX_JSP = "/index.jsp";
+	
 }

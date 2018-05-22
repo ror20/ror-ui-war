@@ -1,10 +1,12 @@
 package com.ror.controller;
 
+import static com.ror.constants.RORConstants.ACTIVE;
 import static com.ror.constants.RORConstants.APPEND_SPACE;
 import static com.ror.constants.RORConstants.LOGIN_INVALID;
 import static com.ror.constants.RORConstants.LOGIN_MESSAGE;
 import static com.ror.constants.RORConstants.LOGIN_PAGE;
 import static com.ror.constants.RORConstants.LOGOUT_MESSAGE;
+import static com.ror.constants.RORConstants.NO;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_FAILED;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_PAGE;
 import static com.ror.constants.RORConstants.PASSWORD_RESET_SUCCESSFULLY;
@@ -30,6 +32,7 @@ import static com.ror.constants.RORConstants.USER_DOES_NOT_EXIST;
 import static com.ror.constants.RORConstants.USER_NAME;
 import static com.ror.constants.RORConstants.USER_OBJECT;
 import static com.ror.constants.RORConstants.USER_TOKEN;
+import static com.ror.constants.RORConstants.YES;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,8 +51,6 @@ import com.ror.utils.RORUtils;
 @Controller
 public class RORController {
 
-	
-	
 	@Autowired
 	private RORSvc rorSvc;
 
@@ -61,9 +62,9 @@ public class RORController {
 		RORUser user = new RORUser(null, rorUserId, null, rorUserPassword);
 		if ((user = rorSvc.authenticateUser(user)) != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute(ROR_USER_NAME, user.getUserName());
-			mav = new ModelAndView(PROFILE_PAGE, USER_NAME, user.getUserName());
+			mav = new ModelAndView(PROFILE_PAGE,USER_NAME,user.getUserName());
 			session.setAttribute(USER_OBJECT, user);
+			session.setAttribute(ACTIVE, YES);
 		} else {
 			mav = new ModelAndView(LOGIN_PAGE, LOGIN_MESSAGE, LOGIN_INVALID);
 		}
@@ -79,10 +80,12 @@ public class RORController {
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		String message = "Thank You For visiting";
 		System.out.println("Session status:"+request.getSession());
-		System.out.println("Session name: " + request.getSession().getAttribute(ROR_USER_NAME));
-		if (request.getSession().getAttribute(ROR_USER_NAME) != null) {
-			String userName = (String) request.getSession().getAttribute(ROR_USER_NAME);
-			request.getSession().invalidate();
+		HttpSession session = request.getSession();
+		RORUser user = (RORUser)session.getAttribute(USER_OBJECT);
+		if(user!=null) {
+			String userName = user.getUserName();
+			System.out.println("Session name: " +userName );
+			session.setAttribute(ACTIVE, NO);
 			return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, message + APPEND_SPACE + userName + "!");
 		}
 		return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, message + "!");
