@@ -74,7 +74,7 @@ public class RORConstants {
 
 	public static final String PROFILE_MESSAGE = "profileMessage";
 
-	public static final String UPDATED_USER_DETAILS_SUCCESS = "User Deatils updated successfully!";
+	public static final String UPDATED_USER_DETAILS_SUCCESS = "User Details updated successfully!";
 
 	public static final String UPDATED_USER_DETAILS_FAILED = "Failed to update the User Details.";
 
