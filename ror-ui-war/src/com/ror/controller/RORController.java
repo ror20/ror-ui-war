@@ -192,6 +192,10 @@ public class RORController {
 			if(user!=null) {
 				System.out.println("Redirecting to Update Profile Page");
 				mav=new ModelAndView(UPDATE_USER_PAGE);
+				mav.addObject(USER_NAME, user.getUserName());
+				mav.addObject(ROR_USER_PASSWORD, user.getPassword());
+				mav.addObject(ROR_USER_ID,user.getUserId());
+				mav.addObject(ROR_USER_EMAIL, user.getEmailId());
 			}else {
 				System.out.println("User is Null.. Redirecting to Login page");
 				mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);

@@ -51,34 +51,31 @@ html, body, h1, h2, h3, h4, h5 {
 			class="w3-bar-item w3-button w3-padding-large">Logout</a>
 	</div>
 
-	<%
-		RORUser user = (RORUser) session.getAttribute("user");
-	%>
 	<div id="updateUserForm">
 		<form name="updateForm" action="updateUser.cont" method="post">
 			<table border="0">
 				<input type="hidden" name="rorUserId" id="userIdInput"
-					placeholder="User Id" maxlength="6" value="<%=user.getUserId()%>"
+					placeholder="User Id" maxlength="6" value="${rorUserId }"
 					required />
 				<br>
 				<tr>
 					<td><input type="text" id="userName" name="userName"
 						class="w3-input" readonly="" placeholder="Enter the User Name"
-						value="<%=user.getUserName()%>" required /></td>
+						value="${rorUserName }" required /></td>
 					<td><input type="button" id="editUserId" class="editButton"
 						value="EDIT" /></td>
 				</tr>
 				<tr>
 					<td><input type="email" id="email" name="email"
 						class="w3-input" readonly="" placeholder="Enter the Email address"
-						value="<%=user.getEmailId()%>" required /></td>
+						value="${email }" required /></td>
 					<td><input type="button" id="editUserEmail" class="editButton"
 						value="EDIT" /></td>
 				</tr>
 				<tr>
 					<td><input type="text" id="rorUserPassword"
 						name="rorUserPassword" readonly="" class="w3-input"
-						value="<%=user.getPassword()%>" placeholder="Enter the Password"
+						value="${rorUserPassword }" placeholder="Enter the Password"
 						required /></td>
 					<td><input type="button" id="editUserPassword"
 						class="editButton" value="EDIT" /></td>
@@ -92,14 +89,5 @@ html, body, h1, h2, h3, h4, h5 {
 			<b>${updateMessage }</b>
 		</form>
 	</div>
-	<!-- <label><b>User Name</b></label>
-			
-			<br>
-			<label><b>Email</b></label>
-			
-			
-			<label><b>Password</b></label>
-			<input type="text" id="rorUserPassword" name="rorUserPassword" readonly="" class="w3-input" value="<%=user.getPassword()%>" placeholder="Enter the Password" required />
-			<input type="button"id="editUserPassword" class="editButton" value="Edit"/><br> -->
 </body>
 </html>
