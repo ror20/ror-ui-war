@@ -33,7 +33,7 @@ html, body, h1, h2, h3, h4, h5 {
 			<a
 				class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
 				href="javascript:void(0);" onclick="openNav()"><i
-				class="fa fa-bars"></i></a> <a href="profile.jsp"
+				class="fa fa-bars"></i></a> <a href="profile.cont"
 				class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
 				class="fa fa-home w3-margin-right"></i>Room Of Requirement</a>
 
@@ -87,13 +87,16 @@ html, body, h1, h2, h3, h4, h5 {
 			<b>${updateMessage }</b>
 		</form>
 		<div id="oldPassword">
-			<form name="changePassword" method="post" action="changePassword.cont">
+			<form name="changePassword" method="post"
+				action="changePassword.cont">
 				<input type="hidden" name="rorUserId" id="userIdInput"
 					placeholder="User Id" maxlength="6" value="${rorUserId }" required />
-				<input type="password" id="rorUserPassword" name="rorUserPassword"
+				<input type="password" id="rorUserPassword" onkeyup="checkIfPasswordMacthes()" name="rorUserPassword"
 					class="w3-input" placeholder="Enter the Old Password" required />
+				<div id="submitDiv">
 					<input type="submit" id="oldPasswordCheck" name="oldPasswordCheck"
 						value="Change">
+				</div>
 				<p>
 					<b>${changePasswordStatus }</b>
 				</p>

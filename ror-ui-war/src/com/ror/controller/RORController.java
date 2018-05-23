@@ -75,6 +75,13 @@ public class RORController {
 	public ModelAndView signUpPageRedirection(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView(SIGNUP_PAGE);
 	}
+	
+	@RequestMapping("/profile")
+	public ModelAndView profilePageRedirection(HttpServletRequest request, HttpServletResponse response) {
+		RORUser user = (RORUser)request.getSession().getAttribute(USER_OBJECT);
+		ModelAndView mav = new ModelAndView(PROFILE_PAGE,USER_NAME,user.getUserName());
+		return mav;
+	}
 
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {

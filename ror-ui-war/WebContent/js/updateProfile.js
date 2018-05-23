@@ -14,7 +14,7 @@ $(document).ready(function() {
 });
 
 var request;
-function checkUserIdIFExist() {
+function checkIfPasswordMacthes() {
 	var id = document.changePassword.rorUserId.value;
 	var password = document.changePassword.rorUserPassword.value;
 	var creds = id+"&"+password;
