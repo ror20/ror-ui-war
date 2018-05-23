@@ -55,8 +55,7 @@ html, body, h1, h2, h3, h4, h5 {
 		<form name="updateForm" action="updateUser.cont" method="post">
 			<table border="0">
 				<input type="hidden" name="rorUserId" id="userIdInput"
-					placeholder="User Id" maxlength="6" value="${rorUserId }"
-					required />
+					placeholder="User Id" maxlength="6" value="${rorUserId }" required />
 				<br>
 				<tr>
 					<td><input type="text" id="userName" name="userName"
@@ -73,21 +72,33 @@ html, body, h1, h2, h3, h4, h5 {
 						value="EDIT" /></td>
 				</tr>
 				<tr>
-					<td><input type="text" id="rorUserPassword"
+					<%-- <td><input type="text" id="rorUserPassword"
 						name="rorUserPassword" readonly="" class="w3-input"
 						value="${rorUserPassword }" placeholder="Enter the Password"
-						required /></td>
+						required /></td> --%>
 					<td><input type="button" id="editUserPassword"
-						class="editButton" value="EDIT" /></td>
+						class="changePassword" value="changePassword" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" id="tokenCheckSubmit" name="update"
 						value="Update"><br></td>
 				</tr>
 			</table>
-
 			<b>${updateMessage }</b>
 		</form>
+		<div id="oldPassword">
+			<form name="changePassword" method="post" action="changePassword.cont">
+				<input type="hidden" name="rorUserId" id="userIdInput"
+					placeholder="User Id" maxlength="6" value="${rorUserId }" required />
+				<input type="password" id="rorUserPassword" name="rorUserPassword"
+					class="w3-input" placeholder="Enter the Old Password" required />
+					<input type="submit" id="oldPasswordCheck" name="oldPasswordCheck"
+						value="Change">
+				<p>
+					<b>${changePasswordStatus }</b>
+				</p>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
