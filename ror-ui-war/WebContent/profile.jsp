@@ -40,7 +40,7 @@ html, body, h1, h2, h3, h4, h5 {
 	<div id="navDemo"
 		class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
 		<a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-		<a href="updateProfile.cont" class="w3-bar-item w3-button w3-padding-large w3-black">${rorUserName}</a> <a
+		<a href="updateProfile.cont" class="w3-bar-item w3-button w3-padding-large w3-black">${rorUserName}(My Profile)</a> <a
 			href="#" class="w3-bar-item w3-button w3-padding-large">Blogs</a> <a
 			href="#" class="w3-bar-item w3-button w3-padding-large">Hot News</a>
 		<a href="#" class="w3-bar-item w3-button w3-padding-large">Contest</a>

@@ -83,16 +83,12 @@ html, body, h1, h2, h3, h4, h5 {
 						value="EDIT" /></td>
 				</tr>
 				<tr>
-					<%-- <td><input type="text" id="rorUserPassword"
-						name="rorUserPassword" readonly="" class="w3-input"
-						value="${rorUserPassword }" placeholder="Enter the Password"
-						required /></td> --%>
-					<td><input type="button" id="editUserPassword"
-						class="changePassword" value="changePassword" /></td>
-				</tr>
-				<tr>
 					<td><input type="submit" id="tokenCheckSubmit" name="update"
 						value="Update"><br></td>
+				</tr>
+				<tr>
+					<td><input type="button" id="editUserPassword"
+						class="changePassword" value="changePassword" /></td>
 				</tr>
 			</table>
 			<b>${updateMessage }</b>
