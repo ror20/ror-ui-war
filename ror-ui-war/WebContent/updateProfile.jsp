@@ -54,9 +54,14 @@ html, body, h1, h2, h3, h4, h5 {
 	<div id="updateUserForm">
 		<form name="updateForm" action="updateUser.cont" method="post">
 			<table border="0">
-				<input type="hidden" name="rorUserId" id="userIdInput"
-					placeholder="User Id" maxlength="6" value="${rorUserId }" required />
+				<input type="hidden" name="rorUserId" id="userIdInput" maxlength="6"
+					value="${rorUserId }" required />
 				<br>
+				<tr>
+					<td><p>
+							<b>User Name:<b></b>
+								<p></td>
+				</tr>
 				<tr>
 					<td><input type="text" id="userName" name="userName"
 						class="w3-input" readonly="" placeholder="Enter the User Name"
@@ -65,6 +70,12 @@ html, body, h1, h2, h3, h4, h5 {
 						value="EDIT" /></td>
 				</tr>
 				<tr>
+					<td><p>
+							<b>User Email:<b></b>
+								<p></td>
+				</tr>
+				<tr>
+
 					<td><input type="email" id="email" name="email"
 						class="w3-input" readonly="" placeholder="Enter the Email address"
 						value="${email }" required /></td>
@@ -87,21 +98,25 @@ html, body, h1, h2, h3, h4, h5 {
 			<b>${updateMessage }</b>
 		</form>
 		<div id="oldPassword">
+			<p>
+				<b>User must enter the old password in order to Reset.</b>
+			</p>
 			<form name="changePassword" method="post"
 				action="changePassword.cont">
 				<input type="hidden" name="rorUserId" id="userIdInput"
 					placeholder="User Id" maxlength="6" value="${rorUserId }" required />
-				<input type="password" id="rorUserPassword" onkeyup="checkIfPasswordMacthes()" name="rorUserPassword"
+				<input type="password" id="rorUserPassword"
+					onkeyup="checkIfPasswordMacthes()" name="rorUserPassword"
 					class="w3-input" placeholder="Enter the Old Password" required />
 				<div id="submitDiv">
 					<input type="submit" id="oldPasswordCheck" name="oldPasswordCheck"
 						value="Change">
 				</div>
-				<p>
-					<b>${changePasswordStatus }</b>
-				</p>
 			</form>
 		</div>
+		<p>
+			<b>${changePasswordStatus }</b>
+		</p>
 	</div>
 </body>
 </html>

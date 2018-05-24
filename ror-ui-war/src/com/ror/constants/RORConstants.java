@@ -94,4 +94,8 @@ public class RORConstants {
 	
 	public static final String INDEX_JSP = "/index.jsp";
 	
+	public static final String FAILED_TO_UPDATE_USER_PASSWORD = "Failed to update user password";
+	
+	public static final String CHANGE_PASSWORD_STATUS = "changePasswordStatus";
+	
 }

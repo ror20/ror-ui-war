@@ -2,6 +2,8 @@ package com.ror.controller;
 
 import static com.ror.constants.RORConstants.ACTIVE;
 import static com.ror.constants.RORConstants.APPEND_SPACE;
+import static com.ror.constants.RORConstants.CHANGE_PASSWORD_STATUS;
+import static com.ror.constants.RORConstants.FAILED_TO_UPDATE_USER_PASSWORD;
 import static com.ror.constants.RORConstants.LOGIN_INVALID;
 import static com.ror.constants.RORConstants.LOGIN_MESSAGE;
 import static com.ror.constants.RORConstants.LOGIN_PAGE;
@@ -50,6 +52,7 @@ import com.ror.utils.RORUtils;
 
 @Controller
 public class RORController {
+
 
 	@Autowired
 	private RORSvc rorSvc;
@@ -219,15 +222,14 @@ public class RORController {
 		ModelAndView mav = null;
 		String userName = request.getParameter(ROR_USER_NAME);
 		String userId = request.getParameter(ROR_USER_ID);
-		String password = request.getParameter(ROR_USER_PASSWORD);
 		String emailId = request.getParameter(ROR_USER_EMAIL);
 		RORUser user = (RORUser) request.getSession().getAttribute(USER_OBJECT);
 		if (user == null) {
 			System.out.println("User is null from session");
 			mav = new ModelAndView(PROFILE_PAGE);
 		} else {
-			if (userName != null && emailId != null && password != null) {
-				RORUser updatedUser = new RORUser(userName, userId, emailId, password);
+			if (userName != null && emailId != null) {
+				RORUser updatedUser = new RORUser(userName, userId, emailId, user.getPassword());
 				boolean updateStatus = rorSvc.updateUser(updatedUser);
 				if (updateStatus) {
 					System.out.println("Updated user successfully!");
@@ -245,6 +247,26 @@ public class RORController {
 				mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE,UPDATED_USER_DETAILS_FAILED );
 			}
 		}
+		return mav;
+	}
+	
+	@RequestMapping("/changePassword")
+	public ModelAndView changeUserPasswordCheck(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = null;
+		String userId = request.getParameter(ROR_USER_ID);
+		String password = request.getParameter(ROR_USER_PASSWORD);
+		RORUser user = rorSvc.fetchUser(userId);
+		if(user!=null) {
+			if(password.equals(user.getPassword())) {
+				mav = new ModelAndView(PASSWORD_RESET_PAGE, ROR_USER_ID, userId);
+				mav.addObject(ROR_USER_NAME,user.getUserName());
+			}else {
+				mav = new ModelAndView(UPDATE_USER_PAGE,CHANGE_PASSWORD_STATUS,FAILED_TO_UPDATE_USER_PASSWORD);
+			}
+		}else {
+			mav = new ModelAndView(UPDATE_USER_PAGE,CHANGE_PASSWORD_STATUS,FAILED_TO_UPDATE_USER_PASSWORD);
+		}
+		
 		return mav;
 	}
 
