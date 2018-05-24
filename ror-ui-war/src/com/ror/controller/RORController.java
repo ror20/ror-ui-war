@@ -82,7 +82,12 @@ public class RORController {
 	@RequestMapping("/profile")
 	public ModelAndView profilePageRedirection(HttpServletRequest request, HttpServletResponse response) {
 		RORUser user = (RORUser)request.getSession().getAttribute(USER_OBJECT);
-		ModelAndView mav = new ModelAndView(PROFILE_PAGE,USER_NAME,user.getUserName());
+		ModelAndView mav;
+		if(user!=null) {
+		 mav = new ModelAndView(PROFILE_PAGE,USER_NAME,user.getUserName());}
+		else {
+			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
+		}
 		return mav;
 	}
 
