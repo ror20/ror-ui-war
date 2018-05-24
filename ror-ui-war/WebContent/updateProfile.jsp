@@ -52,6 +52,7 @@ html, body, h1, h2, h3, h4, h5 {
 	</div>
 
 	<div id="updateUserForm">
+	<h2>My Profile</h2>
 		<form name="updateForm" action="updateUser.cont" method="post">
 			<table border="0">
 				<input type="hidden" name="rorUserId" id="userIdInput" maxlength="6"

@@ -267,9 +267,13 @@ public class RORController {
 				mav.addObject(ROR_USER_NAME,user.getUserName());
 			}else {
 				mav = new ModelAndView(UPDATE_USER_PAGE,CHANGE_PASSWORD_STATUS,FAILED_TO_UPDATE_USER_PASSWORD);
+				mav.addObject(USER_NAME, user.getUserName());
+				mav.addObject(ROR_USER_ID,user.getUserId());
+				mav.addObject(ROR_USER_EMAIL, user.getEmailId());
 			}
 		}else {
-			mav = new ModelAndView(UPDATE_USER_PAGE,CHANGE_PASSWORD_STATUS,FAILED_TO_UPDATE_USER_PASSWORD);
+			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
+			request.getSession().invalidate();
 		}
 		
 		return mav;
