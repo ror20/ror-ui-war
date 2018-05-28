@@ -23,8 +23,8 @@ function checkUserIdIFExist() {
 
 	try {
 		request.onreadystatechange = getInfo;
-		request.open("GET", url, true,'akash','akash');
-		request.withCredentials = true;
+		request.open("GET", url, true);
+		request.setRequestHeader('Authorization', 'Basic YWthc2g6YWthc2g=' );
 		request.send();
 		console.log(request.responseText);
 	} catch (e) {
