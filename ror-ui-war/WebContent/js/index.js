@@ -10,7 +10,7 @@ function openNav() {
 var request;
 function checkUserIdIFExist() {
 	var v = document.signupform.rorUserId.value;
-		var url = "https://ror-rest.herokuapp.com/rest/checkUserExist/"
+		var url = "https://ror20-api.herokuapp.com/rorAPIGateway/checkUserExist/574372"
 				+ v;
 		if(!v){
 			return;
@@ -24,8 +24,8 @@ function checkUserIdIFExist() {
 	try {
 		request.onreadystatechange = getInfo;
 		request.open("GET", url, true);
+		request.setRequestHeader("Authorization", 'Basic ' + btoa('akash:akash'));
 		request.send();
-		console.log(request.responseText);
 	} catch (e) {
 		alert(e);
 		alert("Unable to connect to server");
