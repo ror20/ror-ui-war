@@ -10,7 +10,7 @@ function openNav() {
 var request;
 function checkUserIdIFExist() {
 	var v = document.signupform.rorUserId.value;
-		var url = "https://ror20-api.herokuapp.com/rorAPIGateway/checkUserExist/574372"
+		var url = "https://ror20-api.herokuapp.com/rorAPIGateway/checkUserExist/"
 				+ v;
 		if(!v){
 			return;
