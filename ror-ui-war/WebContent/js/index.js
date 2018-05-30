@@ -23,7 +23,7 @@ function checkUserIdIFExist() {
 
 	try {
 		request.onreadystatechange = getInfo;
-		request.open("GET", url, true);
+		request.open("GET", url);
 		request.setRequestHeader("Authorization", 'Basic ' + btoa('akash:akash'));
 		request.send();
 	} catch (e) {
