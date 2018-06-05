@@ -98,4 +98,9 @@ public class RORConstants {
 	
 	public static final String CHANGE_PASSWORD_STATUS = "changePasswordStatus";
 	
+	public static final String ROR_USER_LIST_TOKEN_ID = "RORUserList_TOKEN";
+
+	public static final String RORUSER_TOKEN_LIST = "roruserTokenlist";
+
+	
 }

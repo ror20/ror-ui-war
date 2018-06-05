@@ -53,10 +53,16 @@ import com.ror.utils.RORUtils;
 @Controller
 public class RORController {
 
-
 	@Autowired
 	private RORSvc rorSvc;
 
+	/**
+	 * User Authentication Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/authenticate")
 	public ModelAndView authenticateUser(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
@@ -65,7 +71,7 @@ public class RORController {
 		RORUser user = new RORUser(null, rorUserId, null, rorUserPassword);
 		if ((user = rorSvc.authenticateUser(user)) != null) {
 			HttpSession session = request.getSession();
-			mav = new ModelAndView(PROFILE_PAGE,USER_NAME,user.getUserName());
+			mav = new ModelAndView(PROFILE_PAGE, USER_NAME, user.getUserName());
 			session.setAttribute(USER_OBJECT, user);
 			session.setAttribute(ACTIVE, YES);
 		} else {
@@ -74,38 +80,66 @@ public class RORController {
 		return mav;
 	}
 
+	/**
+	 * Re Direction to sign up page
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/signup")
 	public ModelAndView signUpPageRedirection(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView(SIGNUP_PAGE);
 	}
-	
+
+	/**
+	 * Re Direction to Profile page
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/profile")
 	public ModelAndView profilePageRedirection(HttpServletRequest request, HttpServletResponse response) {
-		RORUser user = (RORUser)request.getSession().getAttribute(USER_OBJECT);
+		RORUser user = (RORUser) request.getSession().getAttribute(USER_OBJECT);
 		ModelAndView mav;
-		if(user!=null) {
-		 mav = new ModelAndView(PROFILE_PAGE,USER_NAME,user.getUserName());}
-		else {
+		if (user != null) {
+			mav = new ModelAndView(PROFILE_PAGE, USER_NAME, user.getUserName());
+		} else {
 			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
 		}
 		return mav;
 	}
 
+	/**
+	 * Logout Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		String message = "Thank You For visiting";
-		System.out.println("Session status:"+request.getSession());
+		System.out.println("Session status:" + request.getSession());
 		HttpSession session = request.getSession();
-		RORUser user = (RORUser)session.getAttribute(USER_OBJECT);
-		if(user!=null) {
+		RORUser user = (RORUser) session.getAttribute(USER_OBJECT);
+		if (user != null) {
 			String userName = user.getUserName();
-			System.out.println("Session name: " +userName );
+			System.out.println("Session name: " + userName);
 			session.setAttribute(ACTIVE, NO);
 			return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, message + APPEND_SPACE + userName + "!");
 		}
 		return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, message + "!");
 	}
 
+	/**
+	 * Store User Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/storeUser")
 	public ModelAndView storeUser(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
@@ -126,6 +160,13 @@ public class RORController {
 		return mav;
 	}
 
+	/**
+	 * Forgot Password Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/forgotPassword")
 	public ModelAndView forgotPassword(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
@@ -136,8 +177,8 @@ public class RORController {
 			if (user != null) {
 				tokenStatus = RORUtils.sendPasswordResetMail(user, rorSvc);
 				System.out.println(tokenStatus);
-			}else {
-				return new ModelAndView(LOGIN_PAGE,LOGOUT_MESSAGE,USER_DOES_NOT_EXIST);
+			} else {
+				return new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, USER_DOES_NOT_EXIST);
 			}
 
 		}
@@ -146,6 +187,13 @@ public class RORController {
 		return mav;
 	}
 
+	/**
+	 * Check User Token Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/tokenCheck")
 	public ModelAndView checkUserToken(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
@@ -176,6 +224,13 @@ public class RORController {
 		return mav;
 	}
 
+	/**
+	 * Reset User password Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/resetPassword")
 	public ModelAndView resetUserPassword(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
@@ -197,31 +252,45 @@ public class RORController {
 		}
 		return mav;
 	}
-	
+
+	/**
+	 * Re Direction to update profile page Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/updateProfile")
-	public ModelAndView redirectingToUpdateProfile(HttpServletRequest request,HttpServletResponse response) {
+	public ModelAndView redirectingToUpdateProfile(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
 		HttpSession session = request.getSession();
-		if(session!=null) {
-			RORUser user =(RORUser)session.getAttribute(USER_OBJECT);
-			if(user!=null) {
+		if (session != null) {
+			RORUser user = (RORUser) session.getAttribute(USER_OBJECT);
+			if (user != null) {
 				System.out.println("Redirecting to Update Profile Page");
-				mav=new ModelAndView(UPDATE_USER_PAGE);
+				mav = new ModelAndView(UPDATE_USER_PAGE);
 				mav.addObject(USER_NAME, user.getUserName());
 				mav.addObject(ROR_USER_PASSWORD, user.getPassword());
-				mav.addObject(ROR_USER_ID,user.getUserId());
+				mav.addObject(ROR_USER_ID, user.getUserId());
 				mav.addObject(ROR_USER_EMAIL, user.getEmailId());
-			}else {
+			} else {
 				System.out.println("User is Null.. Redirecting to Login page");
 				mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
 			}
-		}else {
+		} else {
 			System.out.println("Session is Null.. Redirecting to Login page");
 			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
 		}
 		return mav;
 	}
 
+	/**
+	 * Update user record Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/updateUser")
 	public ModelAndView updateUserRecord(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
@@ -239,43 +308,50 @@ public class RORController {
 				if (updateStatus) {
 					System.out.println("Updated user successfully!");
 					mav = new ModelAndView(PROFILE_PAGE, USER_NAME, updatedUser.getUserName());
-					mav.addObject(PROFILE_MESSAGE,UPDATED_USER_DETAILS_SUCCESS);
+					mav.addObject(PROFILE_MESSAGE, UPDATED_USER_DETAILS_SUCCESS);
 					HttpSession session = request.getSession();
 					session.setAttribute(USER_OBJECT, updatedUser);
-				}else {
+				} else {
 					System.out.println("Updated user Failed!");
-					mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE,UPDATED_USER_DETAILS_FAILED );
+					mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE, UPDATED_USER_DETAILS_FAILED);
 				}
-				
-			}else {
+
+			} else {
 				System.out.println("Updated user Failed!");
-				mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE,UPDATED_USER_DETAILS_FAILED );
+				mav = new ModelAndView(UPDATE_USER_PAGE, UPDATE_MESSAGE, UPDATED_USER_DETAILS_FAILED);
 			}
 		}
 		return mav;
 	}
-	
+
+	/**
+	 * Change Password Service
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/changePassword")
 	public ModelAndView changeUserPasswordCheck(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
 		String userId = request.getParameter(ROR_USER_ID);
 		String password = request.getParameter(ROR_USER_PASSWORD);
 		RORUser user = rorSvc.fetchUser(userId);
-		if(user!=null) {
-			if(password.equals(user.getPassword())) {
+		if (user != null) {
+			if (password.equals(user.getPassword())) {
 				mav = new ModelAndView(PASSWORD_RESET_PAGE, ROR_USER_ID, userId);
-				mav.addObject(ROR_USER_NAME,user.getUserName());
-			}else {
-				mav = new ModelAndView(UPDATE_USER_PAGE,CHANGE_PASSWORD_STATUS,FAILED_TO_UPDATE_USER_PASSWORD);
+				mav.addObject(ROR_USER_NAME, user.getUserName());
+			} else {
+				mav = new ModelAndView(UPDATE_USER_PAGE, CHANGE_PASSWORD_STATUS, FAILED_TO_UPDATE_USER_PASSWORD);
 				mav.addObject(USER_NAME, user.getUserName());
-				mav.addObject(ROR_USER_ID,user.getUserId());
+				mav.addObject(ROR_USER_ID, user.getUserId());
 				mav.addObject(ROR_USER_EMAIL, user.getEmailId());
 			}
-		}else {
+		} else {
 			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SESSION_INVALID_PLEASE_LOGIN_TO_CONINUE);
 			request.getSession().invalidate();
 		}
-		
+
 		return mav;
 	}
 

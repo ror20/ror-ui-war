@@ -2,6 +2,9 @@ package com.ror.exception;
 
 public class RORException extends Exception {
 
+	
+	private static final long serialVersionUID = -3062792868283798708L;
+
 	public RORException() {
 	}
 

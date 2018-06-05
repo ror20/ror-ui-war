@@ -4,13 +4,14 @@ import static com.ror.constants.RORConstants.COLLECTION_NAME;
 import static com.ror.constants.RORConstants.DATABASE_NAME;
 import static com.ror.constants.RORConstants.DOCUMENT_ID;
 import static com.ror.constants.RORConstants.DOCUMENT_ID_VALUE;
+import static com.ror.constants.RORConstants.RORUSER_TOKEN_LIST;
+import static com.ror.constants.RORConstants.ROR_USER_LIST_TOKEN_ID;
 import static com.ror.constants.RORConstants.USERS_DOCUMENT;
 import static com.ror.utils.RORUtils.convertToJson;
 import static com.ror.utils.RORUtils.convertToPOJO;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +31,6 @@ import com.ror.model.RORUserToken;
 import com.ror.vo.RORResponseVO;
 
 public class RORDAOImpl implements RORDAO {
-
-	private static final String ROR_USER_LIST_TOKEN_ID = "RORUserList_TOKEN";
-
-	public static final String RORUSER_TOKEN_LIST = "roruserTokenlist";
 
 	private static MongoDatabase mongoDatabase = null;
 
@@ -261,6 +258,7 @@ public class RORDAOImpl implements RORDAO {
 		return token;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void deleteUserToken(String userId) {
 		Document document1 = null;
