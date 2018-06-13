@@ -82,8 +82,8 @@ html, body, h1, h2, h3, h4, h5 {
 								class="w3-input w3-border" width="100px" type="password"
 								name="rorUserPassword" id="userPasswordInput"
 								placeholder="Password" required /><br> <input
-								id="ror-green-button" type="submit" value="Login" /> <a
-								href="signup.jsp"> <input id="ror-blue-button" type="button"
+								class="ror-green-button" type="submit" value="Login" /> <a
+								href="signup.jsp"> <input class="ror-blue-button" type="button"
 								value="Sign Up" /></a> <a id="forgotPasswordLink"
 								href="#forgotPasswordDiv">Forgot password.?</a> <br> <br>
 							<br> <b><p class="logoutcss">${logoutMessage }</p></b>
