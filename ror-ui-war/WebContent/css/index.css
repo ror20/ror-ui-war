@@ -11,11 +11,13 @@
 	color: white;
 	border: none;
 	padding: 16px 15px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 #loginButton:hover {
 	background-color: #17A589;
 	color: white;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #signupButton {
@@ -24,11 +26,13 @@
 	border: none;
 	padding: 16px 14px;
 	margin-left: 30px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 #signupButton:hover {
 	background-color: #5DADE2;
 	color: white;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .helloUser {
@@ -118,4 +122,69 @@
 #bodyContent{
 	margin-left: 30px;
 	margin-top: 70px
+}
+
+
+/* New ROR css styles  */
+.ror-content {
+	
+}
+
+
+
+.ror-inputField {
+	width: 75%;
+}
+
+.ror-green-button {
+	background-color: green;
+	color: white;
+	border: none;
+	padding: 16px 15px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.ror-green-button:hover {
+	background-color: #17A589;
+	color: white;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.ror-blue-button {
+	background-color: #3498DB;
+	color: white;
+	border: none;
+	padding: 16px 15px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.ror-blue-button:hover {
+	background-color: #5DADE2;
+	color: white;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.ror-card-size {
+	height: 815px;
+}
+
+.ror-card-size-half {
+	height: 615px;
+}
+
+
+@media ( max-width : 768px) {
+	.ror-card-size {
+		height: 650px;
+	}
+	.ror-card-size-half {
+		height: 420px;
+	}
+}
+
+@media ( min-width :768px) {
+	.ror-aboutus {
+		height: 450px;
+	}
 }

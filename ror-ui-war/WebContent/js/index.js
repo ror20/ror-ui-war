@@ -1,20 +1,20 @@
 function openNav() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
+	var x = document.getElementById("navDemo");
+	if (x.className.indexOf("w3-show") == -1) {
+		x.className += " w3-show";
+	} else {
+		x.className = x.className.replace(" w3-show", "");
+	}
 }
 
 var request;
 function checkUserIdIFExist() {
 	var v = document.signupform.rorUserId.value;
-		var url = "https://ror20-api.herokuapp.com/rorAPIGateway/checkUserExist/"
-				+ v;
-		if(!v){
-			return;
-		}
+	var url = "https://ror20-api.herokuapp.com/rorAPIGateway/checkUserExist/"
+			+ v;
+	if (!v) {
+		return;
+	}
 	if (window.XMLHttpRequest) {
 		request = new XMLHttpRequest();
 	} else if (window.ActiveXObject) {
@@ -25,7 +25,8 @@ function checkUserIdIFExist() {
 		request.onreadystatechange = getInfo;
 		request.open("GET", url);
 		request.withCredentials = true;
-		request.setRequestHeader("Authorization", 'Basic ' + btoa('akash:akash'));
+		request.setRequestHeader("Authorization", 'Basic '
+				+ btoa('akash:akash'));
 		request.send();
 	} catch (e) {
 		alert(e);
@@ -36,33 +37,31 @@ function checkUserIdIFExist() {
 function getInfo() {
 	if (request.readyState == 4) {
 		var val = request.responseText;
-		if(val == 'true'){
+		if (val == 'true') {
 			document.getElementById('status').innerHTML = 'Not available';
 			$('#status').css('color', 'red');
-		}
-		else{
+		} else {
 			document.getElementById('status').innerHTML = 'available';
 			$('#status').css('color', 'green');
 		}
 	}
 }
-$(document).ready(function(){
- $('#rorUserPassword, #repassword').on('keyup', function() {
-	if(!$('#repassword').val()){
-		return;
-	}
-	if ($('#rorUserPassword').val() == $('#repassword').val()) {
-		$('#message').html('Matching').css('color', 'green');
-		$('#submitDiv').show();
-	} else{
-		$('#message').html('Not Matching').css('color', 'red');
-	$('#submitDiv').hide();
-	}
-});
- 
+$(document).ready(function() {
+	$('#rorUserPassword, #repassword').on('keyup', function() {
+		if (!$('#repassword').val()) {
+			return;
+		}
+		if ($('#rorUserPassword').val() == $('#repassword').val()) {
+			$('#message').html('Matching').css('color', 'green');
+			$('#submitDiv').show();
+		} else {
+			$('#message').html('Not Matching').css('color', 'red');
+			$('#submitDiv').hide();
+		}
+	});
 
-
-$('#forgotPasswordLink').click(function(){
-	$('#forgotPasswordDiv').show();
-});
+	$('#forgotPasswordLink').click(function() {
+		$('#forgotPasswordDiv').show();
+		$('#rorBrief').hide();
+	});
 });
