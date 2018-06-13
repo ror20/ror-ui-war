@@ -28,7 +28,7 @@ html, body, h1, h2, h3, h4, h5 {
 		<div class="w3-bar w3-black w3-card">
 			<a
 				class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
-				href="javascript:void(0)" onclick="myFunction()"
+				href="javascript:void(0)" onclick="openNav()"
 				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
 				href="" class="w3-bar-item w3-button w3-padding-large">HOME</a> <a
 				href="blogs.jsp"
@@ -47,12 +47,12 @@ html, body, h1, h2, h3, h4, h5 {
 		class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
 		style="margin-top: 46px">
 		<a href="blogs.jsp" class="w3-bar-item w3-button w3-padding-large"
-			onclick="myFunction()">BLOGS</a> <a href="hotnews.jsp"
-			class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">HOT
+			onclick="openNav()">BLOGS</a> <a href="hotnews.jsp"
+			class="w3-bar-item w3-button w3-padding-large" onclick="openNav()">HOT
 			NEWS</a> <a href="#contact"
-			class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+			class="w3-bar-item w3-button w3-padding-large" onclick="openNav()">CONTACT</a>
 		<a href="#about" class="w3-bar-item w3-button w3-padding-large"
-			onclick="myFunction()">ABOUT</a>
+			onclick="openNav()">ABOUT</a>
 	</div>
 
 
