@@ -131,7 +131,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 				</div>
 
-				<div class="w3-card-4 w3-margin w3-white ror-card-size-half">
+				<div class="w3-card-4 w3-margin w3-white ror-card-size-full">
 					<iframe
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6536.712556782325!2d77.62296947932298!3d13.051417261773768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1765b5eaaaab%3A0x7e080adef1489e8d!2sCognizant+Technology+Solutions+Pvt+Ltd!5e0!3m2!1sen!2sin!4v1528886556058"
 						width="100%" height="450" frameborder="0" style="border: 0"

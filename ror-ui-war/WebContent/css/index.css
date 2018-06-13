@@ -173,6 +173,9 @@
 	height: 615px;
 }
 
+.ror-card-size-full {
+	height: 915px;
+}
 
 @media ( max-width : 768px) {
 	.ror-card-size {
@@ -181,6 +184,10 @@
 	.ror-card-size-half {
 		height: 420px;
 	}
+	
+	.ror-card-size-full {
+	height: 715px;
+}
 }
 
 @media ( min-width :768px) {
