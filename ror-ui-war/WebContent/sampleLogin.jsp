@@ -82,11 +82,11 @@ html, body, h1, h2, h3, h4, h5 {
 								class="w3-input w3-border" width="100px" type="password"
 								name="rorUserPassword" id="userPasswordInput"
 								placeholder="Password" required /><br> <input
-								class="ror-green-button" type="submit" value="Login" /> <a
-								href="signup.jsp"> <input class="ror-blue-button" type="button"
-								value="Sign Up" /></a> <a id="forgotPasswordLink"
-								href="#forgotPasswordDiv">Forgot password.?</a> <br> <br>
-							<br> <b><p class="logoutcss">${logoutMessage }</p></b>
+								class="ror-green-button" type="submit" value="Login" />&nbsp;&nbsp;
+							<input class="ror-blue-button" type="button" value="Sign Up"
+								onclick="window.location.href = '${pageContext.request.contextPath}/sampleSignUp.jsp'" />
+							<a id="forgotPasswordLink" href="#forgotPasswordDiv">Forgot
+								password.?</a> <br> <br> <br> <p class="logoutcss"><b>${logoutMessage }</b></p>
 						</form>
 						<hr>
 						<div id="rorBrief" class="w3-container">
@@ -115,7 +115,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 				<div class="w3-card-4 w3-margin w3-white ror-card-size-half">
 					<img src="images/ror-aboutus-logo.jpg" class="ror-aboutus"
-						alt="about Us" style="width: 100%">
+						alt="about Us" style="width: 100%;margin-top: 10px;">
 					<div id="about" class="w3-container">
 						<hr>
 						<h3>
