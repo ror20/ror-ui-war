@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.ror.dao.RORDAO;
 import com.ror.model.RORUser;
 import com.ror.model.RORUserToken;
+import com.ror.model.StoreRORUser;
 import com.ror.svc.RORSvc;
 import com.ror.vo.RORResponseVO;
 
@@ -16,11 +17,11 @@ public class RORSvcImpl implements RORSvc {
 	private RORDAO rorDAO;
 
 	@Override
-	public boolean storeUser(RORUser user) {
+	public StoreRORUser storeUser(RORUser user) {
 		if (validateUser(user))
 			return rorDAO.storeUser(user);
 		else {
-			return false;
+			return new StoreRORUser("User Id is less than 6 characters",false);
 		}
 	}
 

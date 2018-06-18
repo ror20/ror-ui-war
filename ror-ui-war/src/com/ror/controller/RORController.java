@@ -47,6 +47,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ror.model.RORUser;
 import com.ror.model.RORUserToken;
+import com.ror.model.StoreRORUser;
 import com.ror.svc.RORSvc;
 import com.ror.utils.RORUtils;
 
@@ -148,14 +149,14 @@ public class RORController {
 		String password = request.getParameter(ROR_USER_PASSWORD);
 		String emailId = request.getParameter(ROR_USER_EMAIL);
 		RORUser newUser = new RORUser(userName, userId, emailId, password);
-		boolean storeStatus = rorSvc.storeUser(newUser);
-		if (!storeStatus) {
-			mav = new ModelAndView(SIGNUP_PAGE, SIGN_UP_MESSAGE, SIGN_UP_FAILED);
+		StoreRORUser storeRORuser = rorSvc.storeUser(newUser);
+		if (!storeRORuser.isStoreFlag()) {
+			mav = new ModelAndView(SIGNUP_PAGE, SIGN_UP_MESSAGE, storeRORuser.getStoreStatus());
 			mav.addObject(ROR_USER_NAME, userName);
 			mav.addObject(ROR_USER_ID, userId);
 			mav.addObject(ROR_USER_EMAIL, emailId);
 		} else {
-			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, SIGN_UP_SUCCESS);
+			mav = new ModelAndView(LOGIN_PAGE, LOGOUT_MESSAGE, storeRORuser.getStoreStatus());
 		}
 		return mav;
 	}

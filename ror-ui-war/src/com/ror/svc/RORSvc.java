@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.ror.model.RORUser;
 import com.ror.model.RORUserToken;
+import com.ror.model.StoreRORUser;
 import com.ror.vo.RORResponseVO;
 
 public interface RORSvc {
 	
-	public boolean storeUser(RORUser user);
+	public StoreRORUser storeUser(RORUser user);
 	
 	public RORUser fetchUser(String userId);
 
