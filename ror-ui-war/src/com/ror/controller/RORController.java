@@ -75,8 +75,7 @@ public class RORController {
 			session.setAttribute(USER_OBJECT, user);
 			session.setAttribute(ACTIVE, YES);
 		} else {
-			//mav = new ModelAndView(LOGIN_PAGE, LOGIN_MESSAGE, LOGIN_INVALID);
-			mav = new ModelAndView("sampleLogin", LOGIN_MESSAGE, LOGIN_INVALID);
+			mav = new ModelAndView(LOGIN_PAGE, LOGIN_MESSAGE, LOGIN_INVALID);
 		}
 		return mav;
 	}
