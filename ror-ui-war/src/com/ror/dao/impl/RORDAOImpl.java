@@ -1,6 +1,6 @@
 package com.ror.dao.impl;
 
-import static com.ror.constants.RORConstants.COLLECTION_NAME;
+import static com.ror.constants.RORConstants.*;
 import static com.ror.constants.RORConstants.DATABASE_NAME;
 import static com.ror.constants.RORConstants.DOCUMENT_ID;
 import static com.ror.constants.RORConstants.DOCUMENT_ID_VALUE;
@@ -28,6 +28,7 @@ import com.ror.dao.RORDAO;
 import com.ror.exception.RORException;
 import com.ror.model.RORUser;
 import com.ror.model.RORUserToken;
+import com.ror.model.StoreRORUser;
 import com.ror.vo.RORResponseVO;
 
 public class RORDAOImpl implements RORDAO {
@@ -41,7 +42,7 @@ public class RORDAOImpl implements RORDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean storeUser(RORUser user) {
+	public StoreRORUser storeUser(RORUser user) {
 		Document document1 = null;
 		Map<String, String> userMap = null;
 		try {
@@ -62,12 +63,16 @@ public class RORDAOImpl implements RORDAO {
 				mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, DOCUMENT_ID_VALUE));
 				document1.put(USERS_DOCUMENT, convertToJson(userMap));
 				mongoCollection.insertOne(document1);
-				return true;
+				return new StoreRORUser(SIGN_UP_SUCCESS,true);
 			}
 		} catch (Exception e) {
 			System.out.println("Exception occured to store the user data.");
 			e.printStackTrace();
-			return false;
+			if(e instanceof RORException) {
+				return new StoreRORUser("Failed to register! User already Exist",false);
+			}
+			return new StoreRORUser(SIGN_UP_FAILED,false);
+			
 		}
 	}
 
