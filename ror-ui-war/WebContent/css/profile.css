@@ -1,3 +1,11 @@
+.profile-message {
+	color: green;
+}
+
+.ror-card-size-profile {
+	height: 250px;
+}
+
 .profileLayout {
 	border: #E6E4E8 solid 1px;
 	padding: 10px;

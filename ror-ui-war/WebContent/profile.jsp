@@ -20,7 +20,6 @@
 html, body, h1, h2, h3, h4, h5 {
 	font-family: "Raleway", sans-serif
 }
-
 </style>
 </head>
 <body class="w3-light-grey">
@@ -65,7 +64,7 @@ html, body, h1, h2, h3, h4, h5 {
 			class="w3-bar-item w3-button w3-padding-large" onclick="openNav()">LOGOUT</a>
 	</div>
 
-	<div class="w3-card-4 w3-margin w3-white ror-card-size-half">
+	<div class="w3-card-4 w3-margin w3-white ror-card-size-profile">
 		<div class="profileLayout">
 			<p class="helloUserName">
 				<b> Hello ${rorUserName }! </b>
@@ -74,7 +73,9 @@ html, body, h1, h2, h3, h4, h5 {
 				<p>
 					<b>Welcome to the Room Of Requirement.</b>
 				</p>
+				<center><p class="profile-message"><b>${profileMessage }</b></p></center>
 			</div>
+			
 		</div>
 
 	</div>
