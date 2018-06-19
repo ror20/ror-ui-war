@@ -34,7 +34,7 @@ html, body, h1, h2, h3, h4, h5 {
 	<div class="w3-card-4 w3-margin w3-white ror-card-error-size">
 	<div class="errorContent">
 	<center><img alt="error" src="images/error.jpg" width="160px" height="150px">
-		<p><b>Hey Buddy! I guess you lost your way. <a href="index.jsp">Click
+		<p><b>Hey Buddy! I guess you lost your way. <a href="logout.cont">Click
 			here </a>to visit the site.</b></p>
 			</center>
 	</div>
