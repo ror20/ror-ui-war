@@ -102,5 +102,6 @@ public class RORConstants {
 
 	public static final String RORUSER_TOKEN_LIST = "roruserTokenlist";
 
+	public static final String AUTHENTICATE = "authenticate";
 	
 }

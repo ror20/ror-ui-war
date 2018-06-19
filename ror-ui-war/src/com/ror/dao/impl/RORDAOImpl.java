@@ -63,16 +63,16 @@ public class RORDAOImpl implements RORDAO {
 				mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, DOCUMENT_ID_VALUE));
 				document1.put(USERS_DOCUMENT, convertToJson(userMap));
 				mongoCollection.insertOne(document1);
-				return new StoreRORUser(SIGN_UP_SUCCESS,true);
+				return new StoreRORUser(SIGN_UP_SUCCESS, Boolean.TRUE);
 			}
 		} catch (Exception e) {
 			System.out.println("Exception occured to store the user data.");
 			e.printStackTrace();
-			if(e instanceof RORException) {
-				return new StoreRORUser("Failed to register! User already Exist",false);
+			if (e instanceof RORException) {
+				return new StoreRORUser("Failed to register! User already Exist", Boolean.FALSE);
 			}
-			return new StoreRORUser(SIGN_UP_FAILED,false);
-			
+			return new StoreRORUser(SIGN_UP_FAILED, Boolean.FALSE);
+
 		}
 	}
 
@@ -239,7 +239,7 @@ public class RORDAOImpl implements RORDAO {
 		Map<String, String> userMap = null;
 		RORUserToken token = null;
 		try {
-			System.out.println("Inside fetch user token method to fetch token for the User."+rorUserId);
+			System.out.println("Inside fetch user token method to fetch token for the User." + rorUserId);
 			setMongoParameters();
 			FindIterable<Document> findIterable = mongoCollection.find();
 			for (Document document : findIterable) {
@@ -280,7 +280,7 @@ public class RORDAOImpl implements RORDAO {
 				}
 			}
 			userMap.remove(userId);
-			System.out.println("Removed User Token for the ID:"+userId);
+			System.out.println("Removed User Token for the ID:" + userId);
 			mongoCollection.deleteOne(Filters.eq(DOCUMENT_ID, ROR_USER_LIST_TOKEN_ID));
 			document1.put(RORUSER_TOKEN_LIST, convertToJson(userMap));
 			mongoCollection.insertOne(document1);

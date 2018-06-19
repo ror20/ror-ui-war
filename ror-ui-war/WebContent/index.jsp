@@ -149,7 +149,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 					<div class="w3-container">
 						<p>
-							For Queries and clarification, drop a mail to <a href=""
+							For Queries and clarification, drop a mail to <a
 								style="color: blue">susasan27@gmail.com </a>
 						</p>
 					</div>

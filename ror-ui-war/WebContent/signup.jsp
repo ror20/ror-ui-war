@@ -29,7 +29,7 @@ html, body, h1, h2, h3, h4, h5 {
 				class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
 				href="javascript:void(0)" onclick="openNav()"
 				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
-				href="sampleLogin.jsp"
+				href="index.jsp"
 				class="w3-bar-item w3-button w3-padding-large">HOME</a>
 		</div>
 	</div>
@@ -41,9 +41,9 @@ html, body, h1, h2, h3, h4, h5 {
 		<a href="blogs.jsp" class="w3-bar-item w3-button w3-padding-large"
 			onclick="openNav()">BLOGS</a> <a href="hotnews.jsp"
 			class="w3-bar-item w3-button w3-padding-large" onclick="openNav()">HOT
-			NEWS</a> <a href="sampleLogin.jsp#contact"
+			NEWS</a> <a href="index.jsp#contact"
 			class="w3-bar-item w3-button w3-padding-large" onclick="openNav()">CONTACT</a>
-		<a href="sampleLogin.jsp#about"
+		<a href="index.jsp#about"
 			class="w3-bar-item w3-button w3-padding-large" onclick="openNav()">ABOUT</a>
 	</div>
 

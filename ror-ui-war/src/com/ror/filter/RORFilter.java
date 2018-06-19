@@ -48,7 +48,7 @@ public class RORFilter implements Filter {
 		
 		System.out.println("Value of Session active:" + active);
 		if (active != null) {
-			if (active.equals(NO)) {
+			if (active.equals(NO) && !req.getRequestURL().toString().contains(AUTHENTICATE)) {
 				session.invalidate();
 				req.getRequestDispatcher(INDEX_JSP).forward(req, response);
 			}

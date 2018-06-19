@@ -1,0 +1,10 @@
+.profileLayout {
+	border: #E6E4E8 solid 1px;
+	padding: 10px;
+	margin: 15px;
+}
+
+.helloUserName {
+	font-size: large;
+	padding: 10px;
+}

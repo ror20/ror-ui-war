@@ -168,7 +168,7 @@
 }
 
 .ror-card-size {
-	height: 725px;
+	height: 825px;
 }
 
 .ror-card-size-half {
@@ -176,7 +176,7 @@
 }
 
 .ror-card-size-full {
-	height: 915px;
+	height: 615px;
 }
 
 .ror-card-signup-size {
@@ -189,9 +189,10 @@
 	margin: 15px;
 }
 
+
 @media ( max-width : 768px) {
 	.ror-card-size {
-		height: 650px;
+		height: 675px;
 	}
 	.ror-card-size-half {
 		height: 420px;
